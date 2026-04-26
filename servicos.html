@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inkduo | Serviços Editoriais</title>
+    <meta name="keywords" content="e-books, C.E Luz, Will Light, publicação digital, literatura cristã, devocional, romance épico, inkduo">
+
+    <meta name="referrer" content="no-referrer">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo-wrapper">
+                    <img src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/7ea036484e0307e54f056d37651a140f~c5_100x100.jpeg?lk3s=a5d48078&nonce=29424&refresh_token=667954e3d555c4d693ea937e0e7a7590&x-expires=1777258800&x-signature=8J4%2F3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F" class="logo-icon round-logo" alt="Inkduo Logo" onerror="this.src='https://ui-avatars.com/api/?name=Ink+Duo&background=121212&color=c29957'">
+                    <span class="logo-text">inkduo</span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Loja Catálogo</a></li>
+                    <li><a href="autores.html">Nossos Autores</a></li>
+                    <li><a href="servicos.html" class="active">Serviços Editoriais</a></li>
+                    <li><a href="publique.html">Publique Conosco</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="btn-cart" id="openCart">
+                        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        <span class="cart-badge" id="cartCount">0</span>
+                    </button>
+                    <a href="publique.html" class="btn btn-outline" style="margin-left: 0.5rem;">Sou Autor</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cart Drawer -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header"><h3 class="serif">Seu Carrinho</h3><button class="close-cart" id="closeCart">×</button></div>
+        <div class="cart-body" id="cartBody"></div>
+        <div class="cart-footer">
+            <div class="cart-total"><span>Total:</span><span id="cartTotalValue">R$ 0,00</span></div>
+            <button id="checkoutBtn" class="btn btn-primary" style="width: 100%;" disabled onclick="processCheckout()">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <!-- Services Header -->
+    <section style="padding-top: 180px; padding-bottom: 50px; background: var(--bg-white);">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label">Infraestrutura Literária</span>
+                <h2>Sua ideia transformada em legado.</h2>
+                <p>Nós não apenas hospedamos livros. Nós damos o polimento necessário para que cada linha se torne imortal na mente dos seus leitores.</p>
+            </div>
+            <div class="services-grid" style="margin-top: 4rem;">
+                <div class="service-card reveal">
+                    <svg class="service-icon" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    <h3 class="serif" style="font-size: 1.5rem; margin-bottom: 1rem;">Ghostwriting & Copidesque</h3>
+                    <p style="color: var(--ink-light);">Tem uma história engasgada, mas não sabe por onde começar? Nossos escritores profissionais ajudam a dar fluidez, arco dramático e estrutura impecável para a sua ideia original.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay: 100ms;">
+                    <svg class="service-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                    <h3 class="serif" style="font-size: 1.5rem; margin-bottom: 1rem;">Design de Capas</h3>
+                    <p style="color: var(--ink-light);">A capa é a primeira promessa que um livro faz ao leitor. Desenvolvemos designs estonteantes, focados no público-alvo, garantindo altíssima conversão nas vendas.</p>
+                </div>
+                <div class="service-card reveal" style="transition-delay: 200ms;">
+                    <svg class="service-icon" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                    <h3 class="serif" style="font-size: 1.5rem; margin-bottom: 1rem;">Publicação Integral e Integração</h3>
+                    <p style="color: var(--ink-light);">Da formatação e-Pub e PDF até a integração nativa na nossa plataforma de loja para vendas automatizadas 24h por dia.</p>
+                </div>
+            </div>
+
+            <!-- Portfolio Hook -->
+            <div style="margin-top: 8rem;" class="reveal">
+                <div class="section-header">
+                    <span class="label">Padrão de Qualidade</span>
+                    <h2>Portfólio de Excelência</h2>
+                    <p>Veja algumas das obras que passaram pelo nosso tratamento editorial premium.</p>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                    <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-19-at-23.27.43_95dcdaa7d5e9422d9213a338ef8ff736.jpeg" alt="Exemplo 1" style="width: 100%; border-radius: 4px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                    <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-12-at-00.48.47_1c8ed39f76aa485f85da8c0ae886d68d.jpeg" alt="Exemplo 2" style="width: 100%; border-radius: 4px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin-top: 2rem;">
+                    <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-13-at-10.16.36_25889d1ae0444b1cbf91da8fa7d4f22a.jpeg" alt="Exemplo 3" style="width: 100%; border-radius: 4px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                    <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-10-at-22.11.33_2b2bb3f8f8ed4d6297a57130db03b575.jpeg" alt="Exemplo 4" style="width: 100%; border-radius: 4px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin-top: 2rem;">
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 5rem;" class="reveal">
+                <h3 class="serif" style="margin-bottom: 1rem; font-size: 2rem;">Preparado para criar sua obra faturável?</h3>
+                <a href="publique.html" class="btn btn-primary" style="padding: 1.2rem 3rem; font-size: 1.1rem;">Enviar Proposta Gratuita</a>
+            </div>
+
+            <!-- Detailed Process Section -->
+            <div style="margin-top: 8rem;" class="reveal">
+                <div class="section-header">
+                    <span class="label">Nossa Metodologia</span>
+                    <h2>De uma Ideia ao Legado em 4 Atos</h2>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-top: 4rem;">
+                    <div style="text-align: center;">
+                        <div style="width: 60px; height: 60px; background: var(--accent-gold); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-weight: 700; font-size: 1.5rem;">1</div>
+                        <h4 class="serif">Curadoria Inicial</h4>
+                        <p style="font-size: 0.95rem;">Analisamos o potencial da sua obra e definimos o tom de voz ideal para o seu público-alvo.</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 60px; height: 60px; background: var(--accent-gold); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-weight: 700; font-size: 1.5rem;">2</div>
+                        <h4 class="serif">Engenharia Literária</h4>
+                        <p style="font-size: 0.95rem;">Revisão profunda, copidesque e estruturação de capítulos para uma leitura viciante.</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 60px; height: 60px; background: var(--accent-gold); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-weight: 700; font-size: 1.5rem;">3</div>
+                        <h4 class="serif">Identidade Visual</h4>
+                        <p style="font-size: 0.95rem;">Criação de capas que vendem e formatação premium para todos os dispositivos.</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 60px; height: 60px; background: var(--accent-gold); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-weight: 700; font-size: 1.5rem;">4</div>
+                        <h4 class="serif">Lançamento Direto</h4>
+                        <p style="font-size: 0.95rem;">Integração nativa na nossa loja e suporte para o seu marketing nas redes sociais.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom" style="margin-top: 0; padding-top: 0; border: none;">
+                &copy; 2026 inkduo. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank">
+        <svg style="width: 30px; height: 30px; fill: white;" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.5-11.3 2.5-2.5 5.6-6.5 8.3-9.7 2.8-3.2 3.7-5.5 5.5-9.2 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>
+    </a>
+
+</body>
+</html>
+
