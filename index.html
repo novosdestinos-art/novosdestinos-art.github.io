@@ -3,85 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Livraria Novos Destinos | Curadoria Literária & Destinos Únicos</title>
-    <meta name="keywords" content="e-books, C.E Luz, Will Light, publicação digital, literatura cristã, devocional, romance épico, Livraria Novos Destinos">
-
-    <meta name="description" content="A Livraria Novos Destinos transforma ideias em livros digitais de alta qualidade. Compre e-books ou publique a sua própria história conosco.">
-    <!-- Segurança e Privacidade -->
+    <title>Livraria Novos Destinos | Curadoria Literária &amp; Destinos Únicos</title>
+    <meta name="description" content="Descubra e-books exclusivos de C.E Luz. Compre com segurança ou publique sua própria obra conosco.">
+    <meta name="keywords" content="e-books, C.E Luz, Will Light, livraria digital, literatura cristã, devocional, romance épico, Livraria Novos Destinos">
     <meta name="referrer" content="no-referrer">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    
-    <!-- Fonts -->
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://willbaiano099-art.github.io/inkduobooks/">
+    <meta property="og:title" content="Livraria Novos Destinos | Curadoria Literária">
+    <meta property="og:description" content="E-books exclusivos de C.E Luz. Acesso imediato após a compra.">
+    <meta property="og:image" content="assets/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <!-- CSS Externo -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
-
-    <!-- Open Graph / SEO Social -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://livrarianovosdestinos.com.br/">
-    <meta property="og:title" content="Livraria Novos Destinos | Curadoria Literária">
-    <meta property="og:description" content="Descubra novos horizontes em cada página. Compre e-books exclusivos ou publique sua obra conosco.">
-    <meta property="og:image" content="assets/logo.png">
 </head>
 <body>
+
+    <!-- Scroll Progress -->
+    <div id="scroll-progress"></div>
+
     <!-- Preloader -->
     <div id="preloader">
         <img src="assets/logo.png" class="loader-logo" alt="Livraria Novos Destinos">
         <div class="loader-bar"></div>
     </div>
 
-    <!-- Native Cart Elements -->
+    <!-- Cart -->
     <div class="cart-overlay" id="cartOverlay"></div>
     <div class="cart-drawer" id="cartDrawer">
         <div class="cart-header">
             <h3 class="serif">Seu Carrinho</h3>
-            <button class="close-cart" id="closeCart">×</button>
+            <button class="close-cart" id="closeCart" aria-label="Fechar carrinho">&times;</button>
         </div>
-        <div class="cart-body" id="cartBody">
-            <!-- Renderizado via JS -->
-        </div>
+        <div class="cart-body" id="cartBody"></div>
         <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total:</span>
-                <span id="cartTotalValue">R$ 0,00</span>
-            </div>
-            <button id="checkoutBtn" class="btn btn-primary" style="width: 100%; opacity: 0.5;" disabled onclick="processCheckout()">Finalizar Compra Segura</button>
+            <div class="cart-total"><span>Total:</span><span id="cartTotalValue">R$ 0,00</span></div>
+            <button id="checkoutBtn" class="btn btn-gold" style="width:100%;" disabled onclick="processCheckout()">Finalizar Compra</button>
         </div>
     </div>
 
-    <!-- Toast Notification -->
-    <div class="toast" id="toastMessage">Produto adicionado ao carrinho!</div>
+    <!-- Toast -->
+    <div class="toast" id="toastMessage"></div>
 
     <!-- Header -->
     <header id="header">
         <div class="container">
             <nav>
                 <a href="index.html" class="logo-wrapper">
-                    <img src="assets/logo.png" class="logo-icon" alt="Livraria Novos Destinos Logo">
+                    <img src="assets/logo.png" class="logo-icon" alt="Livraria Novos Destinos">
                 </a>
                 <ul class="nav-menu">
-                    <li><a href="index.html" class="active">Loja Catálogo</a></li>
-                    <li><a href="autores.html">Nossos Autores</a></li>
-                    <li><a href="servicos.html">Serviços Editoriais</a></li>
+                    <li><a href="index.html" class="active">Catálogo</a></li>
+                    <li><a href="autores.html">Autores</a></li>
+                    <li><a href="servicos.html">Serviços</a></li>
                     <li><a href="publique.html">Publique Conosco</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <button class="btn-cart" id="openCart">
-                        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <button class="btn-cart" id="openCart" aria-label="Abrir carrinho">
+                        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
                         <span class="cart-badge" id="cartCount">0</span>
                     </button>
-                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                    <a href="publique.html" class="btn btn-outline" style="font-size:0.85rem;padding:0.6rem 1.2rem;">Sou Autor</a>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                        <span></span><span></span><span></span>
                     </button>
-                    <a href="publique.html" class="btn btn-outline" style="margin-left: 0.5rem;">Sou Autor</a>
                 </div>
             </nav>
         </div>
@@ -89,159 +79,139 @@
 
     <!-- Hero -->
     <section class="hero" id="home">
-        <div class="hero-bg"></div>
         <div class="container">
             <div class="hero-content reveal">
-                <span class="label">Curadoria Literária & Destinos Únicos</span>
-                <h1 style="color: var(--ink-dark);">Descubra novos horizontes em cada <em>página</em>.</h1>
-                <p>Navegue pela nossa loja integrada para adquirir os sucessos de C.E Luz, ou transforme sua própria ideia em um livro digital publicado com excelência.</p>
-                <div style="margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <a href="#store" class="btn btn-primary">Visitar Loja Funcional</a>
+                <span class="label">Curadoria Literária &amp; Destinos Únicos</span>
+                <h1>Descubra novos horizontes<br>em cada <em>página</em>.</h1>
+                <p>E-books exclusivos de C.E Luz — literatura que transforma. Compre com segurança, acesso imediato. Ou transforme sua ideia em um livro publicado com excelência.</p>
+                <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
+                    <a href="#catalogo" class="btn btn-primary">Ver Catálogo</a>
                     <a href="publique.html" class="btn btn-outline">Quero Publicar</a>
                 </div>
             </div>
         </div>
+        <div class="hero-scroll-hint">
+            <span></span>
+            Rolar
+        </div>
     </section>
 
-    <!-- Store / Native Marketplace (FULLY FUNCTIONAL) -->
-    <section class="white" id="store">
+    <!-- Catálogo -->
+    <section class="bg-white" id="catalogo">
         <div class="container">
             <div class="section-header reveal">
                 <span class="label">Livraria Novos Destinos</span>
                 <h2>Catálogo de E-books</h2>
-                <p>Navegue pela nossa coleção, adicione ao carrinho multiplos e-books ou finalize rápido. Acesso imediato.</p>
+                <p>Obras cuidadosamente criadas por C.E Luz. Acesso digital imediato após a compra.</p>
             </div>
-
             <div class="store-grid">
-                <!-- Book 1 -->
+
                 <div class="book-card reveal">
                     <div class="book-cover-wrapper" onclick="window.location.href='livro-vazio-presenca.html'">
-                        <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-19-at-23.27.43_95dcdaa7d5e9422d9213a338ef8ff736.jpeg" alt="Do Vazio à Presença" class="book-cover" onerror="this.src='assets/placeholder.png'">
+                        <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-19-at-23.27.43_95dcdaa7d5e9422d9213a338ef8ff736.jpeg" alt="Do Vazio à Presença de Deus" class="book-cover" onerror="this.src='assets/logo.png'">
                     </div>
                     <div class="book-info">
                         <span class="book-author">C.E Luz</span>
                         <h3 class="book-title">Do Vazio à Presença de Deus</h3>
                         <div class="book-price">R$ 29,90</div>
-                        <div style="display: flex; gap: 0.8rem; margin-top: auto;">
-                            <button class="btn-buy" style="flex: 1; background: transparent; color: var(--ink-dark); border: 1px solid var(--border-soft); text-transform: none; letter-spacing: 0;" onclick="addToCart('Do Vazio à Presença', 29.90, 'https://pay.kiwify.com.br/N6Gx2Id', 'https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-19-at-23.27.43_95dcdaa7d5e9422d9213a338ef8ff736.jpeg')">+ Carrinho</button>
-                            <a href="livro-vazio-presenca.html" class="btn-buy" style="flex: 1.2; text-decoration: none;">Detalhes</a>
+                        <div class="book-actions">
+                            <button class="btn-buy secondary" onclick="addToCart('Do Vazio à Presença de Deus',29.90,'https://pay.kiwify.com.br/N6Gx2Id','https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-19-at-23.27.43_95dcdaa7d5e9422d9213a338ef8ff736.jpeg')">+ Carrinho</button>
+                            <a href="livro-vazio-presenca.html" class="btn-buy primary">Detalhes</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Book 2 -->
-                <div class="book-card reveal" style="transition-delay: 100ms;">
+                <div class="book-card reveal">
                     <div class="book-cover-wrapper" onclick="window.location.href='livro-7-dias.html'">
-                        <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-12-at-00.48.47_1c8ed39f76aa485f85da8c0ae886d68d.jpeg" alt="7 Dias com Deus" class="book-cover" onerror="this.src='assets/placeholder.png'">
+                        <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-12-at-00.48.47_1c8ed39f76aa485f85da8c0ae886d68d.jpeg" alt="7 Dias com Deus" class="book-cover" onerror="this.src='assets/logo.png'">
                     </div>
                     <div class="book-info">
                         <span class="book-author">C.E Luz</span>
                         <h3 class="book-title">7 Dias com Deus</h3>
                         <div class="book-price">R$ 19,90</div>
-                        <div style="display: flex; gap: 0.8rem; margin-top: auto;">
-                            <button class="btn-buy" style="flex: 1; background: transparent; color: var(--ink-dark); border: 1px solid var(--border-soft); text-transform: none; letter-spacing: 0;" onclick="addToCart('7 Dias com Deus', 19.90, 'https://pay.kiwify.com.br/H8BCVHa', 'https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-12-at-00.48.47_1c8ed39f76aa485f85da8c0ae886d68d.jpeg')">+ Carrinho</button>
-                            <a href="livro-7-dias.html" class="btn-buy" style="flex: 1.2; text-decoration: none;">Detalhes</a>
+                        <div class="book-actions">
+                            <button class="btn-buy secondary" onclick="addToCart('7 Dias com Deus',19.90,'https://pay.kiwify.com.br/H8BCVHa','https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-12-at-00.48.47_1c8ed39f76aa485f85da8c0ae886d68d.jpeg')">+ Carrinho</button>
+                            <a href="livro-7-dias.html" class="btn-buy primary">Detalhes</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Book 3 -->
-                <div class="book-card reveal" style="transition-delay: 200ms;">
+                <div class="book-card reveal">
                     <div class="book-cover-wrapper" onclick="window.location.href='livro-auto-sabota.html'">
-                        <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-13-at-10.16.36_25889d1ae0444b1cbf91da8fa7d4f22a.jpeg" alt="Quando a mente nos auto-sabota" class="book-cover" onerror="this.src='assets/placeholder.png'">
+                        <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-13-at-10.16.36_25889d1ae0444b1cbf91da8fa7d4f22a.jpeg" alt="Quando a mente nos auto-sabota" class="book-cover" onerror="this.src='assets/logo.png'">
                     </div>
                     <div class="book-info">
                         <span class="book-author">C.E Luz</span>
                         <h3 class="book-title">Quando a mente nos auto-sabota</h3>
                         <div class="book-price">R$ 24,90</div>
-                        <div style="display: flex; gap: 0.8rem; margin-top: auto;">
-                            <button class="btn-buy" style="flex: 1; background: transparent; color: var(--ink-dark); border: 1px solid var(--border-soft); text-transform: none; letter-spacing: 0;" onclick="addToCart('Auto-Sabota', 24.90, 'https://pay.kiwify.com.br/gqoaa2m', 'https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-13-at-10.16.36_25889d1ae0444b1cbf91da8fa7d4f22a.jpeg')">+ Carrinho</button>
-                            <a href="livro-auto-sabota.html" class="btn-buy" style="flex: 1.2; text-decoration: none;">Detalhes</a>
+                        <div class="book-actions">
+                            <button class="btn-buy secondary" onclick="addToCart('Quando a mente nos auto-sabota',24.90,'https://pay.kiwify.com.br/gqoaa2m','https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-13-at-10.16.36_25889d1ae0444b1cbf91da8fa7d4f22a.jpeg')">+ Carrinho</button>
+                            <a href="livro-auto-sabota.html" class="btn-buy primary">Detalhes</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Book 4 -->
-                <div class="book-card reveal" style="transition-delay: 300ms;">
+                <div class="book-card reveal">
                     <div class="book-cover-wrapper" onclick="window.location.href='livro-arte-aco.html'">
-                        <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-10-at-22.11.33_2b2bb3f8f8ed4d6297a57130db03b575.jpeg" alt="A Arte e o Aço" class="book-cover" onerror="this.src='assets/placeholder.png'">
+                        <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-10-at-22.11.33_2b2bb3f8f8ed4d6297a57130db03b575.jpeg" alt="A Arte e o Aço" class="book-cover" onerror="this.src='assets/logo.png'">
                     </div>
                     <div class="book-info">
                         <span class="book-author">C.E Luz</span>
                         <h3 class="book-title">A Arte e o Aço</h3>
                         <div class="book-price">R$ 34,90</div>
-                        <div style="display: flex; gap: 0.8rem; margin-top: auto;">
-                            <button class="btn-buy" style="flex: 1; background: transparent; color: var(--ink-dark); border: 1px solid var(--border-soft); text-transform: none; letter-spacing: 0;" onclick="addToCart('A Arte e o Aço', 34.90, 'https://pay.kiwify.com.br/sLSFv64', 'https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-10-at-22.11.33_2b2bb3f8f8ed4d6297a57130db03b575.jpeg')">+ Carrinho</button>
-                            <a href="livro-arte-aco.html" class="btn-buy" style="flex: 1.2; text-decoration: none;">Detalhes</a>
+                        <div class="book-actions">
+                            <button class="btn-buy secondary" onclick="addToCart('A Arte e o Aço',34.90,'https://pay.kiwify.com.br/sLSFv64','https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-10-at-22.11.33_2b2bb3f8f8ed4d6297a57130db03b575.jpeg')">+ Carrinho</button>
+                            <a href="livro-arte-aco.html" class="btn-buy primary">Detalhes</a>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials">
+    <!-- Reviews Section — REAL, sem comentários falsos -->
+    <section class="reviews-section" id="avaliacoes">
         <div class="container">
             <div class="section-header reveal">
-                <span class="label">Eco das Palavras</span>
-                <h2>O que nossos leitores e autores dizem</h2>
-                <p>A verdadeira marca de um livro é a transformação que ele deixa no coração de quem o lê.</p>
+                <span class="label">Comunidade de Leitores</span>
+                <h2>Avaliações &amp; Opiniões</h2>
+                <p>Opiniões reais dos nossos leitores. Leu algum livro? Deixe a sua avaliação!</p>
             </div>
-            
-            <div class="testimonial-grid">
-                <div class="testimonial-card reveal">
-                    <p class="testimonial-text">"Os livros da C.E Luz me ajudaram a reencontrar a paz em momentos de profunda ansiedade. A escrita é leve, mas toca na alma."</p>
-                    <div class="testimonial-author">
-                        <div class="author-info">
-                            <span class="author-name">Beatriz Santos</span>
-                            <span class="author-title">Leitora Assídua</span>
+
+            <div class="reviews-grid reveal" id="reviewsGrid" data-book="geral"></div>
+
+            <div class="review-form-wrapper reveal">
+                <h3 class="serif">Deixe sua Avaliação</h3>
+                <form id="reviewForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reviewName">Seu Nome</label>
+                            <input type="text" id="reviewName" placeholder="Ex: Maria Silva" required maxlength="60">
+                        </div>
+                        <div class="form-group">
+                            <label>Nota</label>
+                            <div class="star-picker" id="starPicker"></div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="testimonial-card reveal" style="transition-delay: 100ms;">
-                    <p class="testimonial-text">"Publicar com a Livraria Novos Destinos foi a melhor decisão para minha carreira literária. O design da capa superou todas as minhas expectativas."</p>
-                    <div class="testimonial-author">
-                        <div class="author-info">
-                            <span class="author-name">Marcos Oliveira</span>
-                            <span class="author-title">Autor Publicado</span>
-                        </div>
+                    <div class="form-group">
+                        <label for="reviewText">Sua Opinião</label>
+                        <textarea id="reviewText" rows="4" placeholder="Compartilhe sua experiência com os livros ou com a livraria..." required maxlength="500"></textarea>
                     </div>
-                </div>
-                
-                <div class="testimonial-card reveal" style="transition-delay: 200ms;">
-                    <p class="testimonial-text">"A curadoria da Livraria Novos Destinos é impecável. Cada detalhe, desde o texto até o checkout, exala profissionalismo e amor pela literatura."</p>
-                    <div class="testimonial-author">
-                        <div class="author-info">
-                            <span class="author-name">Helena Viana</span>
-                            <span class="author-title">Crítica Literária</span>
-                        </div>
-                    </div>
-                </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;padding:1rem;">Publicar Avaliação</button>
+                </form>
             </div>
         </div>
     </section>
 
-    <!-- Partial Footer (Unified) -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div>
-                    <a href="index.html" class="logo-wrapper" style="margin-bottom: 1.5rem;">
-                        <img src="assets/logo.png" class="logo-icon" alt="Livraria Novos Destinos Logo" style="width: 180px;">
-                    </a>
-                    <p style="max-width: 300px; color: var(--ink-light); font-size:0.95rem;">Transformando narrativas excepcionais em destinos literários únicos. Uma curadoria dedicada ao crescimento através da leitura.</p>
+                    <img src="assets/logo.png" class="logo-icon" alt="Livraria Novos Destinos" style="width:160px;margin-bottom:1rem;">
+                    <p class="footer-desc">Transformando narrativas excepcionais em destinos literários únicos. Uma curadoria dedicada ao crescimento através da leitura.</p>
                 </div>
-                
-                <div class="footer-links">
-                    <h4>Conecte-se</h4>
-                    <ul>
-                        <li><a href="https://www.instagram.com/livrarianovosdestinos" target="_blank">Instagram</a></li>
-                        <li><a href="https://www.tiktok.com/@livrarianovosdestinos" target="_blank">TikTok</a></li>
-                    </ul>
-                </div>
-
                 <div class="footer-links">
                     <h4>Explorar</h4>
                     <ul>
@@ -249,24 +219,43 @@
                         <li><a href="autores.html">Autores</a></li>
                         <li><a href="servicos.html">Serviços</a></li>
                         <li><a href="publique.html">Publique Conosco</a></li>
+                        <li><a href="#avaliacoes">Avaliações</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Conecte-se</h4>
+                    <ul>
+                        <li><a href="https://www.instagram.com/livrarianovosdestinos" target="_blank" rel="noopener">Instagram</a></li>
+                        <li><a href="https://www.tiktok.com/@livrarianovosdestinos" target="_blank" rel="noopener">TikTok</a></li>
+                        <li><a href="https://wa.me/5511999999999" target="_blank" rel="noopener">WhatsApp</a></li>
+                        <li><a href="links.html">Todos os Links</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                &copy; 2026 Livraria Novos Destinos. Curadoria Literária & Destinos Únicos.
+                <span>&copy; 2026 Livraria Novos Destinos. Todos os direitos reservados.</span>
+                <a href="privacidade.html">Política de Privacidade</a>
             </div>
         </div>
     </footer>
 
-    <!-- JS Externo -->
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    <script src="script.js"></script>
+    <!-- Back to Top -->
+    <button id="back-to-top" aria-label="Voltar ao topo">&#8593;</button>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank">
-        <svg style="width: 30px; height: 30px; fill: white;" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.5-11.3 2.5-2.5 5.6-6.5 8.3-9.7 2.8-3.2 3.7-5.5 5.5-9.2 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>
+    <!-- WhatsApp -->
+    <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.5-11.3 2.5-2.5 5.6-6.5 8.3-9.7 2.8-3.2 3.7-5.5 5.5-9.2 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
     </a>
 
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Init review system for this page
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof window.initReviews === 'function') {
+                window.initReviews('geral');
+            }
+        });
+    </script>
 </body>
 </html>
-

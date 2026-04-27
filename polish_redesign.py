@@ -1,24 +1,55 @@
 import glob
 import os
+import re
+import sys
 
-for file_path in glob.glob("*.html"):
-    with open(file_path, "r", encoding="utf-8") as f:
-        content = f.read()
+def robust_polish():
+    print("Starting Robust Polish Redesign...")
+    html_files = glob.glob("*.html")
     
-    # Remove redundant logo text next to the image
-    new_content = content.replace('<span class="logo-text">Novos Destinos</span>', '')
-    
-    # Update alt text
-    new_content = new_content.replace('alt="Inkduo Logo"', 'alt="Livraria Novos Destinos Logo"')
-    
-    # Update Hero text for a fresher discovery vibe
-    new_content = new_content.replace('Histórias que marcam, publicações que <em>encantam</em>.', 'Descubra novos horizontes em cada <em>página</em>.')
-    new_content = new_content.replace('Plataforma Editorial Integrada', 'Curadoria Literária & Destinos Únicos')
-    new_content = new_content.replace('Curadoria Literária &amp; Destinos Únicos', 'Curadoria Literária & Destinos Únicos')
+    if not html_files:
+        print("No HTML files found in current directory.")
+        return
 
-    if new_content != content:
-        with open(file_path, "w", encoding="utf-8") as f:
-            f.write(new_content)
-        print(f"Polished {file_path}")
+    # Patterns to match (case insensitive and flexible with spaces)
+    replacements = [
+        # Remove logo text span
+        (r'<span class="logo-text">.*?</span>', ''),
+        
+        # Update alt text
+        (r'alt="Inkduo Logo"', 'alt="Livraria Novos Destinos Logo"'),
+        
+        # Title Tags
+        (r'<title>.*?</title>', '<title>Livraria Novos Destinos | Curadoria Literária & Destinos Únicos</title>'),
+        
+        # Hero text
+        (r'Histórias que marcam, publicações que <em>encantam</em>\.', 'Descubra novos horizontes em cada <em>página</em>.'),
+        (r'Plataforma Editorial Integrada', 'Curadoria Literária & Destinos Únicos'),
+        (r'Curadoria Literária &amp; Destinos Únicos', 'Curadoria Literária & Destinos Únicos'),
+        
+        # Global Name update
+        (r'Inkduobooks', 'Livraria Novos Destinos'),
+        (r'Inkduo', 'Livraria Novos Destinos'),
+    ]
 
-print("Polish Complete.")
+    for file_path in html_files:
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                content = f.read()
+            
+            new_content = content
+            for pattern, subst in replacements:
+                new_content = re.sub(pattern, subst, new_content, flags=re.IGNORECASE | re.DOTALL)
+            
+            if new_content != content:
+                with open(file_path, "w", encoding="utf-8") as f:
+                    f.write(new_content)
+                print(f"SUCCESS: {file_path}")
+            else:
+                pass
+        except Exception as e:
+            print(f"ERROR processing {file_path}: {e}")
+
+if __name__ == "__main__":
+    robust_polish()
+    print("Polish Complete.")

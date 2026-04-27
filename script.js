@@ -1,285 +1,269 @@
-// Global Scripts for Livraria Novos Destinos
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-});
+document.addEventListener('DOMContentLoaded', function() {
 
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. Lenis Smooth Scroll Initialization
-    const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: 'vertical',
-        gestureOrientation: 'vertical',
-        smoothWheel: true,
-        wheelMultiplier: 1,
-        smoothTouch: false,
-        touchMultiplier: 2,
-        infinite: false,
-    })
-
-    function raf(time) {
-        lenis.raf(time)
-        requestAnimationFrame(raf)
+    // ===== LENIS SMOOTH SCROLL =====
+    let lenis;
+    if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({ lerp: 0.08, smooth: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf)
 
-    // 2. Header Effect
+    // ===== PRELOADER =====
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        window.addEventListener('load', () => {
+            setTimeout(() => document.body.classList.add('loaded'), 500);
+        });
+        setTimeout(() => document.body.classList.add('loaded'), 3000);
+    }
+
+    // ===== SCROLL PROGRESS BAR =====
+    const progressBar = document.getElementById('scroll-progress');
+    const backTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        if (progressBar) progressBar.style.width = (scrolled / maxScroll * 100) + '%';
+        if (backTop) backTop.classList.toggle('visible', scrolled > 400);
+    }, { passive: true });
+    if (backTop) backTop.addEventListener('click', () => {
+        if (lenis) lenis.scrollTo(0, { duration: 1.2 });
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ===== HEADER SCROLL =====
     const header = document.getElementById('header');
-    if (header) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-    }
+    window.addEventListener('scroll', () => {
+        if (header) header.classList.toggle('scrolled', window.scrollY > 30);
+    }, { passive: true });
 
-    // 3. Mobile Menu Toggle
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    // ===== MOBILE MENU =====
+    const mobileToggle = document.getElementById('mobileMenuToggle');
     const navMenu = document.querySelector('.nav-menu');
-    if (mobileMenuToggle && navMenu) {
-        mobileMenuToggle.addEventListener('click', () => {
-            mobileMenuToggle.classList.toggle('active');
+    if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
-            document.body.classList.toggle('no-scroll');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
         });
-        
-        // Close menu when clicking links
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuToggle.classList.remove('active');
+        navMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
                 navMenu.classList.remove('active');
-                document.body.classList.remove('no-scroll');
+                document.body.style.overflow = '';
             });
         });
     }
 
-    // 4. Advanced Scroll Reveal with Stagger
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry, index) => {
+    // ===== REVEAL ON SCROLL =====
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Check if it's a grid item for staggering
-                const delay = entry.target.dataset.delay || 0;
-                setTimeout(() => {
-                    entry.target.classList.add('active');
-                }, delay);
+                entry.target.classList.add('active');
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-
-    revealElements.forEach((el, i) => {
-        // Auto-stagger grid items if not manually set
-        if (el.parentElement.classList.contains('store-grid') || el.parentElement.classList.contains('testimonial-grid')) {
-            const indexInParent = Array.from(el.parentElement.children).indexOf(el);
-            el.dataset.delay = indexInParent * 150;
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+        if (el.closest('.store-grid, .reviews-grid, .footer-content')) {
+            el.style.transitionDelay = (i * 80) + 'ms';
         }
-        revealObserver.observe(el);
+        observer.observe(el);
     });
 
-    // 5. Hero Parallax Effect
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        window.addEventListener('scroll', () => {
-            const scroll = window.scrollY;
-            const content = hero.querySelector('.hero-content');
-            if (content) {
-                content.style.transform = `translateY(${scroll * 0.2}px)`;
-                content.style.opacity = 1 - (scroll / 700);
-            }
-        });
-    }
-
-    // 6. Micro-interactions: Button Hover Effects
-    document.querySelectorAll('.btn').forEach(btn => {
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            btn.style.setProperty('--x', `${x}px`);
-            btn.style.setProperty('--y', `${y}px`);
-        });
-    });
-
-    // FAQ Interactivity
-    document.querySelectorAll('.faq-question').forEach(q => {
-        q.addEventListener('click', () => {
-            const parent = q.parentElement;
-            document.querySelectorAll('.faq-item').forEach(item => {
-                if (item !== parent) item.classList.remove('active');
-            });
-            parent.classList.toggle('active');
-        });
-    });
-
-    // Form feedback (WhatsApp Author Submission)
-    const authorForm = document.getElementById('authorForm');
-    if (authorForm) {
-        authorForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const formData = new FormData(authorForm);
-            const name = authorForm.querySelector('input[type="text"]').value;
-            const email = authorForm.querySelector('input[type="email"]').value;
-            const stage = authorForm.querySelector('select').value;
-            const synopsis = authorForm.querySelector('textarea').value;
-            
-            const phone = "5511999999999";
-            const message = `Olá Livraria Novos Destinos! 👋%0A%0AGostaria de submeter um manuscrito para avaliação.%0A%0A*Nome:* ${name}%0A*E-mail:* ${email}%0A*Estágio:* ${stage}%0A*Sinopse:* ${synopsis}`;
-            
-            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
-            
-            alert('Abertura de canal via WhatsApp realizada! Nossa equipe aguarda os detalhes.');
-            authorForm.reset();
-        });
-    }
-
-    // Smart Native Cart Logic
+    // ===== CART SYSTEM =====
+    const cartData = JSON.parse(localStorage.getItem('nd_cart') || '[]');
     const cartDrawer = document.getElementById('cartDrawer');
     const cartOverlay = document.getElementById('cartOverlay');
-    
-    // Check if cart exists on this page
-    if (cartDrawer && cartOverlay) {
-        let cartItems = JSON.parse(localStorage.getItem('Livraria Novos Destinos_cart')) || [];
-        
-        const openCartBtn = document.getElementById('openCart');
-        const closeCartBtn = document.getElementById('closeCart');
-        
-        if(openCartBtn) openCartBtn.addEventListener('click', openCartDrawer);
-        if(closeCartBtn) closeCartBtn.addEventListener('click', closeCartDrawer);
-        cartOverlay.addEventListener('click', closeCartDrawer);
+    const openCartBtn = document.getElementById('openCart');
+    const closeCartBtn = document.getElementById('closeCart');
 
-        function openCartDrawer() {
-            cartDrawer.classList.add('open');
-            cartOverlay.classList.add('open');
-            document.body.classList.add('cart-open');
-            renderCart();
-        }
-
-        function closeCartDrawer() {
-            cartDrawer.classList.remove('open');
-            cartOverlay.classList.remove('open');
-            document.body.classList.remove('cart-open');
-        }
-
-        window.addToCart = function(itemTitle, itemPrice, kiwifyUrl, imgUrl) {
-            cartItems.push({ title: itemTitle, price: parseFloat(itemPrice), kiwifyLink: kiwifyUrl, img: imgUrl || 'assets/placeholder.png' });
-            localStorage.setItem('Livraria Novos Destinos_cart', JSON.stringify(cartItems));
-            
-            const toast = document.getElementById('toastMessage');
-            if(toast) {
-                toast.textContent = `${itemTitle} adicionado!`;
-                toast.classList.add('show');
-                setTimeout(() => toast.classList.remove('show'), 3000);
-            }
-            
-            updateCartCount();
-        };
-
-        window.removeFromCart = function(index) {
-            cartItems.splice(index, 1);
-            localStorage.setItem('Livraria Novos Destinos_cart', JSON.stringify(cartItems));
-            renderCart();
-            updateCartCount();
-        };
-
-        window.processCheckout = function() {
-            if(cartItems.length === 0) return;
-            
-            if(cartItems.length === 1) {
-                window.location.href = cartItems[0].kiwifyLink;
-            } else {
-                const phone = "5511999999999"; 
-                const bookList = cartItems.map(i => `• ${i.title}`).join('%0A');
-                const message = `Olá Livraria Novos Destinos! 👋%0A%0AGostaria de adquirir o combo especial com ${cartItems.length} livros:%0A${bookList}%0A%0AComo posso finalizar o pagamento?`;
-                window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
-            }
-        };
-
-        function renderCart() {
-            const cartBody = document.getElementById('cartBody');
-            const cartTotalValue = document.getElementById('cartTotalValue');
-            const cartCount = document.getElementById('cartCount');
-            const checkoutBtn = document.getElementById('checkoutBtn');
-            
-            let total = 0;
-
-            if(cartItems.length === 0) {
-                cartBody.innerHTML = `
-                    <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;">
-                        <svg style="width: 48px; height: 48px; stroke: #ccc; fill: none; margin-bottom: 1rem;" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                        <h4 class="serif">Seu carrinho está vazio</h4>
-                        <button class="btn btn-primary" style="margin-top: 2rem;" onclick="closeCartDrawer()">Explorar Livros</button>
-                    </div>
-                `;
-                checkoutBtn.style.opacity = '0.5';
-                checkoutBtn.disabled = true;
-                checkoutBtn.textContent = "Finalizar Compra Segura";
-            } else {
-                let html = '<div style="width: 100%; text-align: left;">';
-                cartItems.forEach((item, index) => {
-                    total += item.price;
-                    html += `
-                        <div class="cart-item-row">
-                            <img src="${item.img}" class="cart-item-img" alt="Capa">
-                            <div class="cart-item-info">
-                                <span class="cart-item-title">${item.title}</span>
-                                <span class="cart-item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
-                                <span class="cart-item-remove" onclick="removeFromCart(${index})">Remover</span>
-                            </div>
-                        </div>
-                    `;
-                });
-                html += '</div>';
-                cartBody.innerHTML = html;
-                
-                checkoutBtn.style.opacity = '1';
-                checkoutBtn.disabled = false;
-                
-                // Intelligent label
-                if (cartItems.length === 1) {
-                    checkoutBtn.textContent = `Ir para Pagamento (Kiwify)`;
-                } else {
-                    checkoutBtn.textContent = `Finalizar Combo (WhatsApp)`;
-                }
-            }
-            
-            if(cartTotalValue) {
-                cartTotalValue.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-            }
-            updateCartCount();
-        }
-        
-        function updateCartCount() {
-            const countEl = document.getElementById('cartCount');
-            if(countEl) countEl.textContent = cartItems.length;
-        }
-
-        updateCartCount();
-
-        // Privacy / Cookie Consent
-        function initCookieConsent() {
-            if (!localStorage.getItem('cookie-consent')) {
-                const banner = document.createElement('div');
-                banner.className = 'cookie-banner';
-                banner.innerHTML = `
-                    <p>Valorizamos sua privacidade. Utilizamos cookies essenciais para garantir a melhor experiência e segurança dos seus dados conforme a LGPD.</p>
-                    <div class="btn-group">
-                        <button class="btn btn-primary" id="acceptCookies">Aceitar Tudo</button>
-                        <a href="privacidade.html" class="btn btn-outline">Ver Política</a>
-                    </div>
-                `;
-                document.body.appendChild(banner);
-                setTimeout(() => banner.classList.add('active'), 2000);
-
-                document.getElementById('acceptCookies').addEventListener('click', () => {
-                    localStorage.setItem('cookie-consent', 'true');
-                    banner.classList.remove('active');
-                    setTimeout(() => banner.remove(), 600);
-                });
-            }
-        }
-        initCookieConsent();
+    function openCart() {
+        if (cartDrawer) cartDrawer.classList.add('open');
+        if (cartOverlay) cartOverlay.classList.add('open');
+        document.body.classList.add('cart-open');
+        renderCart();
     }
+    function closeCart() {
+        if (cartDrawer) cartDrawer.classList.remove('open');
+        if (cartOverlay) cartOverlay.classList.remove('open');
+        document.body.classList.remove('cart-open');
+    }
+    if (openCartBtn) openCartBtn.addEventListener('click', openCart);
+    if (closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
+    if (cartOverlay) cartOverlay.addEventListener('click', closeCart);
+
+    window.addToCart = function(title, price, link, img) {
+        cartData.push({ title, price: parseFloat(price), link, img: img || 'assets/logo.png' });
+        localStorage.setItem('nd_cart', JSON.stringify(cartData));
+        updateCartCount();
+        showToast('\u201c' + title + '\u201d adicionado ao carrinho!');
+    };
+
+    window.removeFromCart = function(index) {
+        cartData.splice(index, 1);
+        localStorage.setItem('nd_cart', JSON.stringify(cartData));
+        renderCart();
+        updateCartCount();
+    };
+
+    window.processCheckout = function() {
+        if (!cartData.length) return;
+        if (cartData.length === 1) {
+            window.location.href = cartData[0].link;
+        } else {
+            const list = cartData.map(i => '\u2022 ' + i.title + ' (R$ ' + i.price.toFixed(2).replace('.',',') + ')').join('%0A');
+            const msg = 'Ol\u00e1! Gostaria de comprar:%0A' + list + '%0A%0AComo posso finalizar?';
+            window.open('https://wa.me/5511999999999?text=' + msg, '_blank');
+        }
+    };
+
+    function renderCart() {
+        const body = document.getElementById('cartBody');
+        const total = document.getElementById('cartTotalValue');
+        const btn = document.getElementById('checkoutBtn');
+        if (!body) return;
+        if (!cartData.length) {
+            body.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:200px;gap:1rem;text-align:center;"><svg style="width:48px;height:48px;stroke:#ddd;fill:none;" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg><h4 class="serif" style="color:var(--ink-light);font-size:1.2rem;">Carrinho vazio</h4><a href="index.html#store" style="color:var(--accent-gold);font-size:0.9rem;">Ver cat\u00e1logo</a></div>`;
+            if (btn) { btn.disabled = true; btn.style.opacity = '0.5'; btn.textContent = 'Finalizar Compra'; }
+            if (total) total.textContent = 'R$ 0,00';
+            return;
+        }
+        let html = '', sum = 0;
+        cartData.forEach((item, i) => {
+            sum += item.price;
+            html += `<div class="cart-item-row"><img src="${item.img}" class="cart-item-img" alt="Capa"><div class="cart-item-info"><span class="cart-item-title">${item.title}</span><span class="cart-item-price">R$ ${item.price.toFixed(2).replace('.',',')}</span><span class="cart-item-remove" onclick="removeFromCart(${i})">Remover</span></div></div>`;
+        });
+        body.innerHTML = html;
+        if (total) total.textContent = 'R$ ' + sum.toFixed(2).replace('.',',');
+        if (btn) {
+            btn.disabled = false; btn.style.opacity = '1';
+            btn.textContent = cartData.length === 1 ? 'Comprar Agora' : 'Finalizar via WhatsApp';
+        }
+    }
+
+    function updateCartCount() {
+        const el = document.getElementById('cartCount');
+        if (el) el.textContent = cartData.length;
+    }
+
+    function showToast(msg) {
+        const toast = document.getElementById('toastMessage');
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3200);
+    }
+
+    updateCartCount();
+
+    // ===== REVIEW SYSTEM =====
+    const REVIEWS_KEY = 'nd_reviews_v1';
+
+    function getReviews(bookId) {
+        const all = JSON.parse(localStorage.getItem(REVIEWS_KEY) || '{}');
+        return all[bookId] || [];
+    }
+
+    function saveReview(bookId, review) {
+        const all = JSON.parse(localStorage.getItem(REVIEWS_KEY) || '{}');
+        if (!all[bookId]) all[bookId] = [];
+        all[bookId].unshift(review);
+        localStorage.setItem(REVIEWS_KEY, JSON.stringify(all));
+    }
+
+    window.initReviews = function(bookId) {
+        const grid = document.getElementById('reviewsGrid');
+        const form = document.getElementById('reviewForm');
+        const starPicker = document.getElementById('starPicker');
+        if (!grid || !form) return;
+
+        let selectedStars = 0;
+
+        if (starPicker) {
+            starPicker.innerHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const s = document.createElement('span');
+                s.textContent = '\u2605';
+                s.dataset.val = i;
+                s.addEventListener('mouseover', () => highlightStars(i));
+                s.addEventListener('mouseout', () => highlightStars(selectedStars));
+                s.addEventListener('click', () => { selectedStars = i; highlightStars(i); });
+                starPicker.appendChild(s);
+            }
+        }
+
+        function highlightStars(n) {
+            if (!starPicker) return;
+            starPicker.querySelectorAll('span').forEach((s, i) => {
+                s.classList.toggle('active', i < n);
+            });
+        }
+
+        function renderReviews() {
+            const reviews = getReviews(bookId);
+            if (!reviews.length) {
+                grid.innerHTML = `<div class="reviews-empty"><svg viewBox="0 0 24 24" fill="none"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg><p>Seja o primeiro a avaliar. Sua opini\u00e3o \u00e9 muito importante!</p></div>`;
+                return;
+            }
+            grid.innerHTML = reviews.map(r => `
+                <div class="review-card">
+                    <div class="review-stars">${'\u2605'.repeat(r.stars)}${'<span style="color:#ddd">\u2605</span>'.repeat(5 - r.stars)}</div>
+                    <p class="review-text">\u201c${r.text}\u201d</p>
+                    <div class="review-author">
+                        <span class="review-name">${r.name}</span>
+                        <span class="review-date">${r.date}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('reviewName').value.trim();
+            const text = document.getElementById('reviewText').value.trim();
+            if (!name || !text || !selectedStars) {
+                alert('Por favor, preencha todos os campos e selecione uma nota.');
+                return;
+            }
+            const now = new Date();
+            const date = now.toLocaleDateString('pt-BR', { day:'2-digit', month:'long', year:'numeric' });
+            saveReview(bookId, { name, text, stars: selectedStars, date });
+            renderReviews();
+            form.reset();
+            selectedStars = 0;
+            highlightStars(0);
+            showToast('Obrigado pela sua avalia\u00e7\u00e3o! \u2764');
+            grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        renderReviews();
+    };
+
+    // Auto-init if review container exists on page
+    const reviewSection = document.getElementById('reviewsGrid');
+    if (reviewSection && reviewSection.dataset.book) {
+        window.initReviews(reviewSection.dataset.book);
+    }
+
+    // ===== COOKIE CONSENT =====
+    if (!localStorage.getItem('nd_cookie_consent')) {
+        const banner = document.createElement('div');
+        banner.className = 'cookie-banner';
+        banner.innerHTML = `
+            <p>Utilizamos cookies essenciais para o funcionamento do carrinho e para salvar suas avalia\u00e7\u00f5es. Seus dados nunca s\u00e3o compartilhados. <strong>LGPD compliant.</strong></p>
+            <div class="btn-group">
+                <button class="btn btn-primary" id="acceptCookies">Entendido</button>
+                <a href="privacidade.html" class="btn btn-outline">Pol\u00edtica de Privacidade</a>
+            </div>
+        `;
+        document.body.appendChild(banner);
+        setTimeout(() => banner.classList.add('active'), 2500);
+        banner.querySelector('#acceptCookies').addEventListener('click', () => {
+            localStorage.setItem('nd_cookie_consent', 'true');
+            banner.classList.remove('active');
+            setTimeout(() => banner.remove(), 700);
+        });
+    }
+
 });
