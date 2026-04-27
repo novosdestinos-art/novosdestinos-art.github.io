@@ -1,6 +1,29 @@
 // Global Scripts for Livraria Novos Destinos
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+});
+
 document.addEventListener("DOMContentLoaded", () => {
-    // Header Effect
+    // 1. Lenis Smooth Scroll Initialization
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+        infinite: false,
+    })
+
+    function raf(time) {
+        lenis.raf(time)
+        requestAnimationFrame(raf)
+    }
+    requestAnimationFrame(raf)
+
+    // 2. Header Effect
     const header = document.getElementById('header');
     if (header) {
         window.addEventListener('scroll', () => {
@@ -12,17 +35,73 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Scroll Reveal
+    // 3. Mobile Menu Toggle
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const navMenu = document.querySelector('.nav-menu');
+    if (mobileMenuToggle && navMenu) {
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        });
+        
+        // Close menu when clicking links
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
+        });
+    }
+
+    // 4. Advanced Scroll Reveal with Stagger
     const revealElements = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
+        entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('active');
+                // Check if it's a grid item for staggering
+                const delay = entry.target.dataset.delay || 0;
+                setTimeout(() => {
+                    entry.target.classList.add('active');
+                }, delay);
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
-    revealElements.forEach(el => revealObserver.observe(el));
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+    revealElements.forEach((el, i) => {
+        // Auto-stagger grid items if not manually set
+        if (el.parentElement.classList.contains('store-grid') || el.parentElement.classList.contains('testimonial-grid')) {
+            const indexInParent = Array.from(el.parentElement.children).indexOf(el);
+            el.dataset.delay = indexInParent * 150;
+        }
+        revealObserver.observe(el);
+    });
+
+    // 5. Hero Parallax Effect
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        window.addEventListener('scroll', () => {
+            const scroll = window.scrollY;
+            const content = hero.querySelector('.hero-content');
+            if (content) {
+                content.style.transform = `translateY(${scroll * 0.2}px)`;
+                content.style.opacity = 1 - (scroll / 700);
+            }
+        });
+    }
+
+    // 6. Micro-interactions: Button Hover Effects
+    document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            btn.style.setProperty('--x', `${x}px`);
+            btn.style.setProperty('--y', `${y}px`);
+        });
+    });
 
     // FAQ Interactivity
     document.querySelectorAll('.faq-question').forEach(q => {
@@ -35,13 +114,24 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Form feedback
+    // Form feedback (WhatsApp Author Submission)
     const authorForm = document.getElementById('authorForm');
     if (authorForm) {
         authorForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('A Livraria Novos Destinos recebeu os detalhes da sua publicação! Em breve a nossa equipe editorial fará contato pelo e-mail informado.');
-            e.target.reset();
+            const formData = new FormData(authorForm);
+            const name = authorForm.querySelector('input[type="text"]').value;
+            const email = authorForm.querySelector('input[type="email"]').value;
+            const stage = authorForm.querySelector('select').value;
+            const synopsis = authorForm.querySelector('textarea').value;
+            
+            const phone = "5511999999999";
+            const message = `Olá Livraria Novos Destinos! 👋%0A%0AGostaria de submeter um manuscrito para avaliação.%0A%0A*Nome:* ${name}%0A*E-mail:* ${email}%0A*Estágio:* ${stage}%0A*Sinopse:* ${synopsis}`;
+            
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+            
+            alert('Abertura de canal via WhatsApp realizada! Nossa equipe aguarda os detalhes.');
+            authorForm.reset();
         });
     }
 
@@ -79,6 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             const toast = document.getElementById('toastMessage');
             if(toast) {
+                toast.textContent = `${itemTitle} adicionado!`;
                 toast.classList.add('show');
                 setTimeout(() => toast.classList.remove('show'), 3000);
             }
@@ -97,12 +188,11 @@ document.addEventListener("DOMContentLoaded", () => {
             if(cartItems.length === 0) return;
             
             if(cartItems.length === 1) {
-                // Route natively to Kiwify if only 1 item
                 window.location.href = cartItems[0].kiwifyLink;
             } else {
-                // Route to WhatsApp if multiple items
-                const phone = "5511999999999"; // Change to real phone if provided
-                const message = encodeURIComponent(`Olá Livraria Novos Destinos! Gostaria de finalizar a compra do combo com ${cartItems.length} livros. Os títulos são: \n${cartItems.map(i => '- ' + i.title).join('\n')}`);
+                const phone = "5511999999999"; 
+                const bookList = cartItems.map(i => `• ${i.title}`).join('%0A');
+                const message = `Olá Livraria Novos Destinos! 👋%0A%0AGostaria de adquirir o combo especial com ${cartItems.length} livros:%0A${bookList}%0A%0AComo posso finalizar o pagamento?`;
                 window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
             }
         };
@@ -167,5 +257,29 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         updateCartCount();
+
+        // Privacy / Cookie Consent
+        function initCookieConsent() {
+            if (!localStorage.getItem('cookie-consent')) {
+                const banner = document.createElement('div');
+                banner.className = 'cookie-banner';
+                banner.innerHTML = `
+                    <p>Valorizamos sua privacidade. Utilizamos cookies essenciais para garantir a melhor experiência e segurança dos seus dados conforme a LGPD.</p>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" id="acceptCookies">Aceitar Tudo</button>
+                        <a href="privacidade.html" class="btn btn-outline">Ver Política</a>
+                    </div>
+                `;
+                document.body.appendChild(banner);
+                setTimeout(() => banner.classList.add('active'), 2000);
+
+                document.getElementById('acceptCookies').addEventListener('click', () => {
+                    localStorage.setItem('cookie-consent', 'true');
+                    banner.classList.remove('active');
+                    setTimeout(() => banner.remove(), 600);
+                });
+            }
+        }
+        initCookieConsent();
     }
 });

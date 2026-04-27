@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livraria Novos Destinos | Links Oficiais</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Segurança e Privacidade -->
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <style>
+        body {
+            background: var(--bg-cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+            text-align: center;
+        }
+        .links-container {
+            max-width: 450px;
+            width: 100%;
+        }
+        .links-logo {
+            width: 150px;
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease;
+        }
+        .links-title {
+            margin-bottom: 2.5rem;
+        }
+        .links-title h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--ink-dark);
+        }
+        .links-title p {
+            font-size: 1rem;
+            color: var(--ink-light);
+        }
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .link-item {
+            background: var(--bg-white);
+            color: var(--ink-dark);
+            text-decoration: none;
+            padding: 1.2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            border: 1px solid var(--border-soft);
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+        .link-item:hover {
+            transform: translateY(-3px);
+            background: var(--ink-dark);
+            color: var(--bg-white);
+            box-shadow: 0 10px 25px rgba(15, 26, 21, 0.15);
+        }
+        .link-item.featured {
+            background: var(--accent-gold);
+            color: var(--bg-white);
+            border-color: var(--accent-gold);
+        }
+        .link-item.featured:hover {
+            background: var(--accent-gold-dark);
+        }
+        .links-footer {
+            margin-top: 4rem;
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="links-container">
+        <img src="assets/logo.png" alt="Livraria Novos Destinos" class="links-logo">
+        
+        <div class="links-title">
+            <h1 class="serif">Novos Destinos</h1>
+            <p>Curadoria Literária & Publicação Digital</p>
+        </div>
+
+        <div class="links-list">
+            <a href="index.html" class="link-item featured">🛍️ Visitar Nossa Loja Oficinal</a>
+            <a href="https://wa.me/5511999999999" class="link-item">💬 Falar no WhatsApp (Suporte)</a>
+            <a href="https://www.instagram.com/livrarianovosdestinos" class="link-item">📸 Siga-nos no Instagram</a>
+            <a href="https://www.tiktok.com/@livrarianovosdestinos" class="link-item">🎵 Acompanhe no TikTok</a>
+            <a href="publique.html" class="link-item">✍️ Portal do Autor (Publique Conosco)</a>
+        </div>
+
+        <div class="links-footer">
+            &copy; 2026 Livraria Novos Destinos
+        </div>
+    </div>
+
+</body>
+</html>

@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Livraria Novos Destinos | Plataforma Editorial & Loja</title>
+    <title>Livraria Novos Destinos | Curadoria Literária & Destinos Únicos</title>
     <meta name="keywords" content="e-books, C.E Luz, Will Light, publicação digital, literatura cristã, devocional, romance épico, Livraria Novos Destinos">
 
     <meta name="description" content="A Livraria Novos Destinos transforma ideias em livros digitais de alta qualidade. Compre e-books ou publique a sua própria história conosco.">
-    <!-- Política para permitir imagens CDN externas sem erro 403 -->
+    <!-- Segurança e Privacidade -->
     <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,8 +19,22 @@
     
     <!-- CSS Externo -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="apple-touch-icon" href="assets/logo.png">
+
+    <!-- Open Graph / SEO Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://livrarianovosdestinos.com.br/">
+    <meta property="og:title" content="Livraria Novos Destinos | Curadoria Literária">
+    <meta property="og:description" content="Descubra novos horizontes em cada página. Compre e-books exclusivos ou publique sua obra conosco.">
+    <meta property="og:image" content="assets/logo.png">
 </head>
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="assets/logo.png" class="loader-logo" alt="Livraria Novos Destinos">
+        <div class="loader-bar"></div>
+    </div>
 
     <!-- Native Cart Elements -->
     <div class="cart-overlay" id="cartOverlay"></div>
@@ -47,8 +63,7 @@
         <div class="container">
             <nav>
                 <a href="index.html" class="logo-wrapper">
-                    <img src="assets/logo.png" class="logo-icon round-logo" alt="Livraria Novos Destinos Logo" onerror="this.src='https://ui-avatars.com/api/?name=Novos+Destinos&background=121212&color=c29957'">
-                    
+                    <img src="assets/logo.png" class="logo-icon" alt="Livraria Novos Destinos Logo">
                 </a>
                 <ul class="nav-menu">
                     <li><a href="index.html" class="active">Loja Catálogo</a></li>
@@ -60,6 +75,11 @@
                     <button class="btn-cart" id="openCart">
                         <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         <span class="cart-badge" id="cartCount">0</span>
+                    </button>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </button>
                     <a href="publique.html" class="btn btn-outline" style="margin-left: 0.5rem;">Sou Autor</a>
                 </div>
@@ -96,17 +116,15 @@
                 <!-- Book 1 -->
                 <div class="book-card reveal">
                     <div class="book-cover-wrapper" onclick="window.location.href='livro-vazio-presenca.html'">
-                        <!-- Kiwify Original Asset -->
                         <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-19-at-23.27.43_95dcdaa7d5e9422d9213a338ef8ff736.jpeg" alt="Do Vazio à Presença" class="book-cover" onerror="this.src='assets/placeholder.png'">
                     </div>
                     <div class="book-info">
-                        <h3 class="book-title">Do Vazio à Presença de Deus</h3>
                         <span class="book-author">C.E Luz</span>
-                        <span class="book-credits">Créditos: Will Light</span>
-                        <div style="display: flex; gap: 0.5rem; margin-top: auto;">
-                            <!-- Call JS cart function (title, price, link, img) -->
-                            <button class="btn-buy" style="flex: 1; background: transparent; color: var(--ink-dark); border: 1px solid var(--border-soft);" onclick="addToCart('Do Vazio à Presença', 29.90, 'https://pay.kiwify.com.br/N6Gx2Id', 'https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-19-at-23.27.43_95dcdaa7d5e9422d9213a338ef8ff736.jpeg')">Adicionar</button>
-                            <a href="livro-vazio-presenca.html" class="btn-buy" style="flex: 1.5; text-decoration: none;">Ver Detalhes</a>
+                        <h3 class="book-title">Do Vazio à Presença de Deus</h3>
+                        <div class="book-price">R$ 29,90</div>
+                        <div style="display: flex; gap: 0.8rem; margin-top: auto;">
+                            <button class="btn-buy" style="flex: 1; background: transparent; color: var(--ink-dark); border: 1px solid var(--border-soft); text-transform: none; letter-spacing: 0;" onclick="addToCart('Do Vazio à Presença', 29.90, 'https://pay.kiwify.com.br/N6Gx2Id', 'https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-19-at-23.27.43_95dcdaa7d5e9422d9213a338ef8ff736.jpeg')">+ Carrinho</button>
+                            <a href="livro-vazio-presenca.html" class="btn-buy" style="flex: 1.2; text-decoration: none;">Detalhes</a>
                         </div>
                     </div>
                 </div>
@@ -117,12 +135,12 @@
                         <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-12-at-00.48.47_1c8ed39f76aa485f85da8c0ae886d68d.jpeg" alt="7 Dias com Deus" class="book-cover" onerror="this.src='assets/placeholder.png'">
                     </div>
                     <div class="book-info">
-                        <h3 class="book-title">7 Dias com Deus</h3>
                         <span class="book-author">C.E Luz</span>
-                        <span class="book-credits">Créditos: Will Light</span>
-                        <div style="display: flex; gap: 0.5rem; margin-top: auto;">
-                            <button class="btn-buy" style="flex: 1; background: transparent; color: var(--ink-dark); border: 1px solid var(--border-soft);" onclick="addToCart('7 Dias com Deus', 19.90, 'https://pay.kiwify.com.br/H8BCVHa', 'https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-12-at-00.48.47_1c8ed39f76aa485f85da8c0ae886d68d.jpeg')">Adicionar</button>
-                            <a href="livro-7-dias.html" class="btn-buy" style="flex: 1.5; text-decoration: none;">Ver Detalhes</a>
+                        <h3 class="book-title">7 Dias com Deus</h3>
+                        <div class="book-price">R$ 19,90</div>
+                        <div style="display: flex; gap: 0.8rem; margin-top: auto;">
+                            <button class="btn-buy" style="flex: 1; background: transparent; color: var(--ink-dark); border: 1px solid var(--border-soft); text-transform: none; letter-spacing: 0;" onclick="addToCart('7 Dias com Deus', 19.90, 'https://pay.kiwify.com.br/H8BCVHa', 'https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-12-at-00.48.47_1c8ed39f76aa485f85da8c0ae886d68d.jpeg')">+ Carrinho</button>
+                            <a href="livro-7-dias.html" class="btn-buy" style="flex: 1.2; text-decoration: none;">Detalhes</a>
                         </div>
                     </div>
                 </div>
@@ -133,12 +151,12 @@
                         <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-13-at-10.16.36_25889d1ae0444b1cbf91da8fa7d4f22a.jpeg" alt="Quando a mente nos auto-sabota" class="book-cover" onerror="this.src='assets/placeholder.png'">
                     </div>
                     <div class="book-info">
-                        <h3 class="book-title">Quando a mente nos auto-sabota</h3>
                         <span class="book-author">C.E Luz</span>
-                        <span class="book-credits">Créditos: Will Light</span>
-                        <div style="display: flex; gap: 0.5rem; margin-top: auto;">
-                            <button class="btn-buy" style="flex: 1; background: transparent; color: var(--ink-dark); border: 1px solid var(--border-soft);" onclick="addToCart('Auto-Sabota', 24.90, 'https://pay.kiwify.com.br/gqoaa2m', 'https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-13-at-10.16.36_25889d1ae0444b1cbf91da8fa7d4f22a.jpeg')">Adicionar</button>
-                            <a href="livro-auto-sabota.html" class="btn-buy" style="flex: 1.5; text-decoration: none;">Ver Detalhes</a>
+                        <h3 class="book-title">Quando a mente nos auto-sabota</h3>
+                        <div class="book-price">R$ 24,90</div>
+                        <div style="display: flex; gap: 0.8rem; margin-top: auto;">
+                            <button class="btn-buy" style="flex: 1; background: transparent; color: var(--ink-dark); border: 1px solid var(--border-soft); text-transform: none; letter-spacing: 0;" onclick="addToCart('Auto-Sabota', 24.90, 'https://pay.kiwify.com.br/gqoaa2m', 'https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-13-at-10.16.36_25889d1ae0444b1cbf91da8fa7d4f22a.jpeg')">+ Carrinho</button>
+                            <a href="livro-auto-sabota.html" class="btn-buy" style="flex: 1.2; text-decoration: none;">Detalhes</a>
                         </div>
                     </div>
                 </div>
@@ -149,12 +167,12 @@
                         <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-10-at-22.11.33_2b2bb3f8f8ed4d6297a57130db03b575.jpeg" alt="A Arte e o Aço" class="book-cover" onerror="this.src='assets/placeholder.png'">
                     </div>
                     <div class="book-info">
-                        <h3 class="book-title">A Arte e o Aço</h3>
                         <span class="book-author">C.E Luz</span>
-                        <span class="book-credits">Créditos: Will Light</span>
-                        <div style="display: flex; gap: 0.5rem; margin-top: auto;">
-                            <button class="btn-buy" style="flex: 1; background: transparent; color: var(--ink-dark); border: 1px solid var(--border-soft);" onclick="addToCart('A Arte e o Aço', 34.90, 'https://pay.kiwify.com.br/sLSFv64', 'https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-10-at-22.11.33_2b2bb3f8f8ed4d6297a57130db03b575.jpeg')">Adicionar</button>
-                            <a href="livro-arte-aco.html" class="btn-buy" style="flex: 1.5; text-decoration: none;">Ver Detalhes</a>
+                        <h3 class="book-title">A Arte e o Aço</h3>
+                        <div class="book-price">R$ 34,90</div>
+                        <div style="display: flex; gap: 0.8rem; margin-top: auto;">
+                            <button class="btn-buy" style="flex: 1; background: transparent; color: var(--ink-dark); border: 1px solid var(--border-soft); text-transform: none; letter-spacing: 0;" onclick="addToCart('A Arte e o Aço', 34.90, 'https://pay.kiwify.com.br/sLSFv64', 'https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-10-at-22.11.33_2b2bb3f8f8ed4d6297a57130db03b575.jpeg')">+ Carrinho</button>
+                            <a href="livro-arte-aco.html" class="btn-buy" style="flex: 1.2; text-decoration: none;">Detalhes</a>
                         </div>
                     </div>
                 </div>
@@ -211,37 +229,37 @@
             <div class="footer-content">
                 <div>
                     <a href="index.html" class="logo-wrapper" style="margin-bottom: 1.5rem;">
-                        <img src="assets/logo.png" class="logo-icon round-logo" alt="Livraria Novos Destinos Logo" onerror="this.src='https://ui-avatars.com/api/?name=Novos+Destinos&background=121212&color=c29957'">
-                        
+                        <img src="assets/logo.png" class="logo-icon" alt="Livraria Novos Destinos Logo" style="width: 180px;">
                     </a>
-                    <p style="max-width: 300px; color:#aaa; font-size:0.95rem;">Transformando narrativas excepcionais em publicações digitais. Plataforma nativa desenhada para encantar e converter.</p>
+                    <p style="max-width: 300px; color: var(--ink-light); font-size:0.95rem;">Transformando narrativas excepcionais em destinos literários únicos. Uma curadoria dedicada ao crescimento através da leitura.</p>
                 </div>
                 
                 <div class="footer-links">
                     <h4>Conecte-se</h4>
                     <ul>
-                        <li><a href="https://www.instagram.com/Livraria Novos Destinos.oficial" target="_blank">Instagram (@Livraria Novos Destinos.oficial)</a></li>
-                        <li><a href="https://www.tiktok.com/@Livraria Novos Destinosbooks.oficial" target="_blank">TikTok (@Livraria Novos Destinosbooks.oficial)</a></li>
+                        <li><a href="https://www.instagram.com/livrarianovosdestinos" target="_blank">Instagram</a></li>
+                        <li><a href="https://www.tiktok.com/@livrarianovosdestinos" target="_blank">TikTok</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-links">
-                    <h4>Navegação Central</h4>
+                    <h4>Explorar</h4>
                     <ul>
-                        <li><a href="index.html">Loja Catálogo de Livros</a></li>
-                        <li><a href="autores.html">Sobre a Autoria</a></li>
-                        <li><a href="publique.html">Portal do Autor (Submissão)</a></li>
-                        <li><a href="servicos.html">Serviços e Design</a></li>
+                        <li><a href="index.html">Catálogo</a></li>
+                        <li><a href="autores.html">Autores</a></li>
+                        <li><a href="servicos.html">Serviços</a></li>
+                        <li><a href="publique.html">Publique Conosco</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                &copy; 2026 Livraria Novos Destinos. Todos os direitos reservados.
+                &copy; 2026 Livraria Novos Destinos. Curadoria Literária & Destinos Únicos.
             </div>
         </div>
     </footer>
 
     <!-- JS Externo -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script src="script.js"></script>
 
     <!-- Floating WhatsApp Button -->

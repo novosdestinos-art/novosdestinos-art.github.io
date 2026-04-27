@@ -3,35 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Livraria Novos Destinos | Portal do Autor (Submissão)</title>
+    <title>Livraria Novos Destinos | Curadoria Literária & Destinos Únicos</title>
     <meta name="keywords" content="e-books, C.E Luz, Will Light, publicação digital, literatura cristã, devocional, romance épico, Livraria Novos Destinos">
 
     <meta name="referrer" content="no-referrer">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="apple-touch-icon" href="assets/logo.png">
+
+    <!-- Open Graph / SEO Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://livrarianovosdestinos.com.br/">
+    <meta property="og:title" content="Livraria Novos Destinos | Curadoria Literária">
+    <meta property="og:description" content="Descubra novos horizontes em cada página. Compre e-books exclusivos ou publique sua obra conosco.">
+    <meta property="og:image" content="assets/logo.png">
 </head>
 <body style="background: var(--ink-dark); color: var(--bg-pearl);">
+    <!-- Preloader -->
+    <div id="preloader" style="background: var(--ink-dark);">
+        <img src="assets/logo.png" class="loader-logo" alt="Livraria Novos Destinos">
+        <div class="loader-bar"></div>
+    </div>
 
-    <!-- Header Transparent for Dark Bg -->
-    <header id="header" style="background: rgba(15, 17, 21, 0.9); border-bottom: 1px solid rgba(255,255,255,0.1);">
+    <!-- Header -->
+    <header id="header" style="background: rgba(15, 26, 21, 0.9); border-bottom: 1px solid rgba(255,255,255,0.05);">
         <div class="container">
             <nav>
-                <a href="index.html" class="logo-wrapper" style="color: white;">
-                    <img src="assets/logo.png" class="logo-icon round-logo" alt="Livraria Novos Destinos Logo" onerror="this.src='https://ui-avatars.com/api/?name=Novos+Destinos&background=121212&color=c29957'">
-                    
+                <a href="index.html" class="logo-wrapper">
+                    <img src="assets/logo.png" class="logo-icon" alt="Livraria Novos Destinos Logo" style="filter: brightness(0) invert(1) contrast(100%);">
                 </a>
                 <ul class="nav-menu">
-                    <li><a href="index.html" style="color: #ccc;">Loja Catálogo</a></li>
-                    <li><a href="autores.html" style="color: #ccc;">Nossos Autores</a></li>
-                    <li><a href="servicos.html" style="color: #ccc;">Serviços Editoriais</a></li>
-                    <li><a href="publique.html" style="color: var(--accent-gold);">Publique Conosco</a></li>
+                    <li><a href="index.html" style="color: rgba(255,255,255,0.7);">Catálogo</a></li>
+                    <li><a href="autores.html" style="color: rgba(255,255,255,0.7);">Autores</a></li>
+                    <li><a href="servicos.html" style="color: rgba(255,255,255,0.7);">Serviços</a></li>
+                    <li><a href="publique.html" class="active" style="color: var(--accent-gold);">Publique Conosco</a></li>
                 </ul>
                 <div class="nav-actions">
                     <button class="btn-cart" id="openCart" style="color: white;">
                         <svg viewBox="0 0 24 24" style="stroke: white;"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                         <span class="cart-badge" id="cartCount">0</span>
                     </button>
-                    <a href="index.html" class="btn btn-outline" style="margin-left: 0.5rem; color: white; border-color: white;">Ir para Loja</a>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <span style="background: white;"></span>
+                        <span style="background: white;"></span>
+                        <span style="background: white;"></span>
+                    </button>
                 </div>
             </nav>
         </div>
@@ -104,6 +121,42 @@
     <!-- Toast Notification -->
     <div class="toast" id="toastMessage">Produto adicionado ao carrinho!</div>
 
+    <!-- Footer -->
+    <footer style="background: rgba(0,0,0,0.2);">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <a href="index.html" class="logo-wrapper" style="margin-bottom: 1.5rem;">
+                        <img src="assets/logo.png" class="logo-icon" alt="Livraria Novos Destinos Logo" style="width: 180px; filter: brightness(0) invert(1);">
+                    </a>
+                    <p style="max-width: 300px; color: rgba(255,255,255,0.5); font-size:0.95rem;">Sua obra merece o destino de excelência que só a nossa curadoria pode oferecer.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Conecte-se</h4>
+                    <ul>
+                        <li><a href="https://www.instagram.com/livrarianovosdestinos" target="_blank">Instagram</a></li>
+                        <li><a href="https://www.tiktok.com/@livrarianovosdestinos" target="_blank">TikTok</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Explorar</h4>
+                    <ul>
+                        <li><a href="index.html">Catálogo</a></li>
+                        <li><a href="autores.html">Autores</a></li>
+                        <li><a href="servicos.html">Serviços</a></li>
+                        <li><a href="publique.html">Publique Conosco</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom" style="border-top-color: rgba(255,255,255,0.05);">
+                &copy; 2026 Livraria Novos Destinos. Curadoria Literária & Destinos Únicos.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script src="script.js"></script>
 
     <!-- Floating WhatsApp Button -->
