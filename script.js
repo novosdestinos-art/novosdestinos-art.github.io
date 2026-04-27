@@ -1,4 +1,4 @@
-// Global Scripts for Inkduo
+// Global Scripts for Livraria Novos Destinos
 document.addEventListener("DOMContentLoaded", () => {
     // Header Effect
     const header = document.getElementById('header');
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (authorForm) {
         authorForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('A Inkduo recebeu os detalhes da sua publicação! Em breve a nossa equipe editorial fará contato pelo e-mail informado.');
+            alert('A Livraria Novos Destinos recebeu os detalhes da sua publicação! Em breve a nossa equipe editorial fará contato pelo e-mail informado.');
             e.target.reset();
         });
     }
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Check if cart exists on this page
     if (cartDrawer && cartOverlay) {
-        let cartItems = JSON.parse(localStorage.getItem('inkduo_cart')) || [];
+        let cartItems = JSON.parse(localStorage.getItem('Livraria Novos Destinos_cart')) || [];
         
         const openCartBtn = document.getElementById('openCart');
         const closeCartBtn = document.getElementById('closeCart');
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         window.addToCart = function(itemTitle, itemPrice, kiwifyUrl, imgUrl) {
             cartItems.push({ title: itemTitle, price: parseFloat(itemPrice), kiwifyLink: kiwifyUrl, img: imgUrl || 'assets/placeholder.png' });
-            localStorage.setItem('inkduo_cart', JSON.stringify(cartItems));
+            localStorage.setItem('Livraria Novos Destinos_cart', JSON.stringify(cartItems));
             
             const toast = document.getElementById('toastMessage');
             if(toast) {
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         window.removeFromCart = function(index) {
             cartItems.splice(index, 1);
-            localStorage.setItem('inkduo_cart', JSON.stringify(cartItems));
+            localStorage.setItem('Livraria Novos Destinos_cart', JSON.stringify(cartItems));
             renderCart();
             updateCartCount();
         };
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 // Route to WhatsApp if multiple items
                 const phone = "5511999999999"; // Change to real phone if provided
-                const message = encodeURIComponent(`Olá Inkduo! Gostaria de finalizar a compra do combo com ${cartItems.length} livros. Os títulos são: \n${cartItems.map(i => '- ' + i.title).join('\n')}`);
+                const message = encodeURIComponent(`Olá Livraria Novos Destinos! Gostaria de finalizar a compra do combo com ${cartItems.length} livros. Os títulos são: \n${cartItems.map(i => '- ' + i.title).join('\n')}`);
                 window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
             }
         };
