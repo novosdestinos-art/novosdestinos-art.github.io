@@ -1,0 +1,6 @@
+﻿<!-- BACKUP: Botao "Quero Publicar" do Hero (restaurar quando houver equipe) -->
+<!-- Adicionar dentro da div com style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;" no index.html -->
+<!--
+    <a href="publique.html" class="btn btn-outline">Quero Publicar</a>
+-->
+<!-- FIM DO BACKUP -->
