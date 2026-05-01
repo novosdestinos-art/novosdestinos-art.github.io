@@ -258,8 +258,56 @@ footer { background: var(--bg-secondary); padding: 80px 0 30px; border-top: 1px 
 .whatsapp-float:hover { transform: scale(1.1) translateY(-5px); background: #128C7E; box-shadow: 0 15px 35px rgba(37,211,102,0.4); }
 .whatsapp-float svg { width: 28px; height: 28px; fill: white; }
 
+/* ===== REVIEWS SECTION ===== */
+.reviews-section { background: var(--bg-primary); padding: 100px 0; }
+.reviews-empty { text-align: center; padding: 4rem 2rem; color: var(--text-secondary); }
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+.review-card {
+    background: var(--bg-secondary); padding: 2rem; border-radius: var(--radius-md);
+    border: 1px solid var(--border-soft); box-shadow: var(--shadow-sm);
+    transition: var(--transition); animation: fadeInUp 0.5s ease;
+}
+.review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.review-stars { color: var(--accent); font-size: 1.1rem; margin-bottom: 0.8rem; letter-spacing: 2px; }
+.review-text { font-size: 1rem; color: var(--text-primary); line-height: 1.7; margin-bottom: 1.2rem; font-style: italic; }
+.review-author { display: flex; align-items: center; justify-content: space-between; }
+.review-name { font-weight: 700; font-size: 0.9rem; color: var(--text-primary); }
+.review-date { font-size: 0.78rem; color: var(--text-secondary); }
+
+/* Review Form */
+.review-form-wrapper {
+    background: var(--bg-secondary); padding: 2.5rem; border-radius: var(--radius-md);
+    border: 1px solid var(--border-soft); max-width: 700px; margin: 0 auto; box-shadow: var(--shadow-sm);
+}
+.review-form-wrapper h3 { margin-bottom: 2rem; text-align: center; font-size: 1.6rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem; }
+.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1.2rem; }
+.form-group label { font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
+.form-group input, .form-group textarea {
+    padding: 0.85rem 1.1rem; border: 1px solid var(--border-soft); border-radius: 50px;
+    font-family: 'Inter', sans-serif; font-size: 0.95rem; color: var(--text-primary);
+    background: var(--bg-primary); transition: border-color 0.3s; resize: vertical;
+}
+.form-group textarea { border-radius: 20px; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+.star-picker { display: flex; gap: 6px; font-size: 1.8rem; cursor: pointer; margin: 0.5rem 0; }
+.star-picker span { color: #ddd; transition: color 0.2s, transform 0.2s; }
+.star-picker span:hover, .star-picker span.active { color: var(--accent); transform: scale(1.15); }
+
+/* ===== PRODUCT PAGE ===== */
+.product-page { padding-top: 160px; padding-bottom: 100px; background: var(--bg-primary); }
+.back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; margin-bottom: 3rem; transition: color 0.3s; }
+.back-link:hover { color: var(--accent); }
+.product-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 6rem; align-items: start; max-width: 1200px; margin: 0 auto; }
+.product-image { position: sticky; top: 130px; }
+.product-image .book-cover-wrapper { max-width: 400px; margin: 0 auto; }
+.product-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.product-meta span { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary); font-weight: 600; }
+.price-tag { font-size: 3.2rem; color: var(--accent); font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 2.2rem; line-height: 1; }
+.product-synopsis { font-size: 1.1rem; line-height: 1.85; color: var(--text-secondary); margin-bottom: 3rem; }
+.product-actions { display: flex; gap: 1rem; margin-bottom: 3rem; }
+
 /* ===== RESPONSIVE ===== */
-@media (max-width: 1024px) {
     .container { padding: 0 2rem; }
     h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
 }

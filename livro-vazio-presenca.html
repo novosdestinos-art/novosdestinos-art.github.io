@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,21 +38,21 @@
         <div class="container">
             <nav>
                 <a href="index.html" class="logo-wrapper">
-                    <img src="assets/logo.png" class="logo-icon" alt="Livraria Novos Destinos Logo">
+                    Novos Destinos.
                 </a>
                 <ul class="nav-menu">
-                    <li><a href="index.html">Catálogo</a></li>
+                    <li><a href="#catalogo" class="active">Obras</a></li>
                     <li><a href="autores.html">Autores</a></li>
+                    <li><a href="#avaliacoes">AvaliaÃ§Ãµes</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <button class="btn-cart" id="openCart">
-                        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                        <span class="cart-badge" id="cartCount">0</span>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Alternar Tema" title="Mudar tema (Claro/Escuro)">
+                        <!-- Ãcone de Lua (Dark Mode por padrÃ£o) -->
+                        <svg viewBox="0 0 24 24" id="themeIcon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
                     </button>
-                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                    <button class="btn-cart" id="openCart" aria-label="Abrir carrinho">
+                        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                        <span class="cart-badge" id="cartCount">0</span>
                     </button>
                 </div>
             </nav>
@@ -79,9 +79,7 @@
             <a href="index.html" style="text-decoration: none; color: var(--ink-light); margin-bottom: 2rem; display: inline-block;">&larr; Voltar para Loja</a>
             
             <div class="product-grid">
-                <div class="product-image reveal">
-                    <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-19-at-23.27.43_95dcdaa7d5e9422d9213a338ef8ff736.jpeg" alt="Do Vazio à Presença de Deus">
-                </div>
+                <div class="product-image reveal"><div class="book-cover-wrapper"><img class="book-cover" src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-19-at-23.27.43_95dcdaa7d5e9422d9213a338ef8ff736.jpeg" alt="Do Vazio à Presença de Deus"></div></div>
                 
                 <div class="product-details reveal" style="transition-delay: 100ms;">
                     <span class="label">Devocional / Teologia</span>
@@ -97,7 +95,7 @@
                     <div class="price-tag">R$ 29,90</div>
 
                     <div style="display: flex; gap: 1rem; margin-bottom: 3rem;">
-                        <button class="btn btn-primary" style="flex: 2; padding: 1.2rem; font-size: 1.1rem; background: var(--accent-gold); border: none;" onclick="window.location.href='https://pay.kiwify.com.br/N6Gx2Id'">
+                        <button class="btn btn-primary" style="flex: 2; padding: 1.2rem; font-size: 1.1rem;  " onclick="window.location.href='https://pay.kiwify.com.br/N6Gx2Id'">
                             Comprar Agora (Checkout Rápido)
                         </button>
                         <button class="btn btn-outline" style="flex: 1;" onclick="addToCart('Do Vazio à Presença', 29.90, 'https://pay.kiwify.com.br/N6Gx2Id', 'https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-19-at-23.27.43_95dcdaa7d5e9422d9213a338ef8ff736.jpeg')">
@@ -151,30 +149,28 @@
         <div class="container">
             <div class="footer-content">
                 <div>
-                    <a href="index.html" class="logo-wrapper" style="margin-bottom: 1.5rem;">
-                        <img src="assets/logo.png" class="logo-icon" alt="Livraria Novos Destinos Logo" style="width: 180px;">
-                    </a>
-                    <p style="max-width: 300px; color: var(--ink-light); font-size:0.95rem;">Transformando narrativas excepcionais em destinos literários únicos. Uma curadoria dedicada ao crescimento através da leitura.</p>
+                    <div class="logo-wrapper" style="font-size:2rem; margin-bottom: 1rem;">NOVOS DESTINOS.</div>
+                    <p class="footer-desc">Redefinindo a experiÃªncia literÃ¡ria. Um portfÃ³lio dedicado Ã  excelÃªncia editorial.</p>
                 </div>
-                
                 <div class="footer-links">
-                    <h4>Conecte-se</h4>
+                    <h4>NavegaÃ§Ã£o</h4>
                     <ul>
-                        <li><a href="https://www.instagram.com/livrarianovosdestinos" target="_blank">Instagram</a></li>
-                        <li><a href="https://www.tiktok.com/@livrarianovosdestinos" target="_blank">TikTok</a></li>
+                        <li><a href="#home">InÃ­cio</a></li>
+                        <li><a href="#catalogo">CatÃ¡logo</a></li>
+                        <li><a href="autores.html">Autores</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-links">
-                    <h4>Explorar</h4>
+                    <h4>Social</h4>
                     <ul>
-                        <li><a href="index.html">Catálogo</a></li>
-                        <li><a href="autores.html">Autores</a></li>
+                        <li><a href="https://www.instagram.com/livrarianovosdestinos" target="_blank" rel="noopener">Instagram</a></li>
+                        <li><a href="https://wa.me/5511999999999" target="_blank" rel="noopener">WhatsApp</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                &copy; 2026 Livraria Novos Destinos. Curadoria Literária & Destinos Únicos.
+                <span>&copy; 2026 WEAREBRAND Inspiration Test. Novos Destinos.</span>
+                <a href="privacidade.html">Privacidade</a>
             </div>
         </div>
     </footer>
@@ -195,5 +191,7 @@
     </script>
 </body>
 </html>
+
+
 
 
