@@ -27,6 +27,14 @@
     
     --transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     --transition-fast: all 0.3s ease;
+
+    /* Aliases para compatibilidade com HTML antigo */
+    --accent-gold: var(--accent);
+    --ink-dark: var(--text-primary);
+    --ink-medium: var(--text-secondary);
+    --ink-light: var(--text-secondary);
+    --paper-cream: var(--bg-primary);
+    --paper-white: var(--bg-secondary);
 }
 
 [data-theme="dark"] {
@@ -300,7 +308,8 @@ footer { background: var(--bg-secondary); padding: 80px 0 30px; border-top: 1px 
 .back-link:hover { color: var(--accent); }
 .product-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 6rem; align-items: start; max-width: 1200px; margin: 0 auto; }
 .product-image { position: sticky; top: 130px; }
-.product-image .book-cover-wrapper { max-width: 400px; margin: 0 auto; }
+.product-image img { width: 100%; max-width: 400px; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); transition: var(--transition); display: block; margin: 0 auto; }
+.product-image img:hover { transform: scale(1.02); box-shadow: var(--shadow-glow); }
 .product-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
 .product-meta span { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary); font-weight: 600; }
 .price-tag { font-size: 3.2rem; color: var(--accent); font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 2.2rem; line-height: 1; }
