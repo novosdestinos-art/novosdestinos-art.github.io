@@ -4,23 +4,214 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Livraria Novos Destinos | Curadoria Literária &amp; Destinos Únicos</title>
-    <meta name="description" content="Descubra e-books exclusivos de C.E Luz. Compre com segurança ou publique sua própria obra conosco.">
-    <meta name="keywords" content="e-books, C.E Luz, Will Light, livraria digital, literatura cristã, devocional, romance épico, Livraria Novos Destinos">
+    <meta name="description" content="Descubra livros selecionados pela Livraria Novos Destinos: bestsellers, romances e obras para crescimento pessoal.">
+    <meta name="keywords" content="livros, livraria novos destinos, curadoria literária, bestsellers, romance, crescimento pessoal, literatura cristã">
     <meta name="referrer" content="no-referrer">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#b49d65">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://willbaiano099-art.github.io/inkduobooks/">
-    <meta property="og:title" content="Livraria Novos Destinos | Curadoria Literária">
-    <meta property="og:description" content="E-books exclusivos de C.E Luz. Acesso imediato após a compra.">
-    <meta property="og:image" content="assets/logo.png">
+    <meta property="og:title" content="Livraria Novos Destinos | Curadoria Literária &amp; Destinos Únicos">
+    <meta property="og:description" content="Bestsellers internacionais e recomendações literárias selecionadas pela Livraria Novos Destinos.">
+    <meta property="og:image" content="https://willbaiano099-art.github.io/inkduobooks/assets/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
+    <style>
+        /* Category Section Styles */
+        .category-section {
+            margin-bottom: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(180, 157, 101, 0.2);
+        }
+
+        .category-section:last-child {
+            border-bottom: none;
+        }
+
+        .category-header {
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .category-label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #b49d65;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            display: inline-block;
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #1a1a1a;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .category-desc {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .badge-bestseller {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #d4755d 0%, #c95c48 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            z-index: 10;
+            border-radius: 2px;
+            box-shadow: 0 4px 12px rgba(212, 117, 93, 0.3);
+        }
+
+        .book-card {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .book-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .book-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.75rem 0;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+        }
+
+        .stars {
+            color: #ffa500;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .rating-count {
+            color: #999;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .book-source {
+            font-size: 0.75rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid #eee;
+            font-weight: 500;
+        }
+
+        .btn-store {
+            background: linear-gradient(135deg, #b49d65 0%, #8f7845 100%);
+            color: white;
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-store:hover {
+            background: linear-gradient(135deg, #9f8953 0%, #6f5a30 100%);
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(180, 157, 101, 0.3);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .category-title {
+                font-size: 1.5rem;
+            }
+
+            .category-desc {
+                font-size: 0.9rem;
+            }
+
+            .badge-bestseller {
+                top: 0.75rem;
+                right: 0.75rem;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.65rem;
+            }
+
+            .book-rating {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .category-section {
+                margin-bottom: 3rem;
+                padding-bottom: 2rem;
+            }
+
+            .category-title {
+                font-size: 1.3rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .category-label {
+                font-size: 0.8rem;
+                letter-spacing: 1.5px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Store Grid Fix */
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .store-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .store-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -80,7 +271,7 @@
             <div class="hero-content reveal">
                 <span class="label">Curadoria Literária &amp; Destinos Únicos</span>
                 <h1>Descubra novos horizontes<br>em cada <em>página</em>.</h1>
-                <p>E-books exclusivos de C.E Luz — literatura que transforma. Compre com segurança e tenha acesso imediato.</p>
+                <p>Uma curadoria de livros para quem busca histórias marcantes, crescimento pessoal e inspiração em cada página.</p>
                 <div style="margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
                     <a href="#catalogo" class="btn btn-primary">Ver Catálogo</a>
                 </div>
@@ -97,76 +288,263 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="label">Livraria Novos Destinos</span>
-                <h2>Catálogo de E-books</h2>
-                <p>Obras cuidadosamente criadas por C.E Luz. Acesso digital imediato após a compra.</p>
+                <h2>Catálogo da Livraria</h2>
+                <p>Bestsellers internacionais e recomendações selecionadas pela nossa curadoria.</p>
             </div>
-            <div class="store-grid">
 
-                <div class="book-card reveal">
-                    <div class="book-cover-wrapper" onclick="window.location.href='livro-vazio-presenca.html'">
-                        <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-19-at-23.27.43_95dcdaa7d5e9422d9213a338ef8ff736.jpeg" alt="Do Vazio à Presença de Deus" class="book-cover" onerror="this.src='assets/logo.png'">
-                    </div>
-                    <div class="book-info">
-                        <span class="book-author">C.E Luz</span>
-                        <h3 class="book-title">Do Vazio à Presença de Deus</h3>
-                        <div class="book-price">R$ 29,90</div>
-                        <div class="book-actions">
-                            <button class="btn-buy secondary" onclick="addToCart('Do Vazio à Presença de Deus',29.90,'https://pay.kiwify.com.br/N6Gx2Id','https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-19-at-23.27.43_95dcdaa7d5e9422d9213a338ef8ff736.jpeg')">+ Carrinho</button>
-                            <a href="livro-vazio-presenca.html" class="btn-buy primary">Detalhes</a>
+            <!-- SEÇÃO 1: BESTSELLERS INTERNACIONAIS -->
+            <div class="category-section">
+                <div class="category-header">
+                    <span class="category-label">⭐ Mais Vendidos Mundialmente</span>
+                    <h3 class="category-title">Bestsellers Internacionais</h3>
+                    <p class="category-desc">Os livros mais lidos e amados por leitores ao redor do mundo.</p>
+                </div>
+                <div class="store-grid">
+
+                    <!-- Depois daquele verão -->
+                    <div class="book-card reveal">
+                        <div class="badge-bestseller">Nº1 Vendido</div>
+                        <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/B0CZQVV4YX?tag=novosdestinos-20', '_blank')">
+                            <img src="https://m.media-amazon.com/images/P/B0CZQVV4YX.01._SY475_.jpg" alt="Depois daquele verão" class="book-cover" onerror="this.src='assets/logo.png'">
+                        </div>
+                        <div class="book-info">
+                            <span class="book-author">Carley Fortune</span>
+                            <h3 class="book-title">Depois daquele verão</h3>
+                            <div class="book-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(20.372)</span>
+                            </div>
+                            <div class="book-price">Seleção da Livraria</div>
+                            <div class="book-source">Múltiplos formatos</div>
+                            <div class="book-actions">
+                                <button class="btn-buy secondary" onclick="window.open('https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20informações%20sobre%20o%20livro%20%27Depois%20daquele%20verão%27%20de%20Carley%20Fortune', '_blank')">+ WhatsApp</button>
+                                <a href="https://www.amazon.com.br/dp/B0CZQVV4YX?tag=novosdestinos-20" target="_blank" rel="noopener noreferrer" class="btn-buy primary btn-store">Comprar</a>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="book-card reveal">
-                    <div class="book-cover-wrapper" onclick="window.location.href='livro-7-dias.html'">
-                        <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-12-at-00.48.47_1c8ed39f76aa485f85da8c0ae886d68d.jpeg" alt="7 Dias com Deus" class="book-cover" onerror="this.src='assets/logo.png'">
-                    </div>
-                    <div class="book-info">
-                        <span class="book-author">C.E Luz</span>
-                        <h3 class="book-title">7 Dias com Deus</h3>
-                        <div class="book-price">R$ 19,90</div>
-                        <div class="book-actions">
-                            <button class="btn-buy secondary" onclick="addToCart('7 Dias com Deus',19.90,'https://pay.kiwify.com.br/H8BCVHa','https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-12-at-00.48.47_1c8ed39f76aa485f85da8c0ae886d68d.jpeg')">+ Carrinho</button>
-                            <a href="livro-7-dias.html" class="btn-buy primary">Detalhes</a>
+                    <!-- Cristianismo puro e simples -->
+                    <div class="book-card reveal">
+                        <div class="badge-bestseller">Nº1 Vendido</div>
+                        <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/8578601630?tag=novosdestinos-20', '_blank')">
+                            <img src="https://m.media-amazon.com/images/P/8578601630.01._SY475_.jpg" alt="Cristianismo puro e simples" class="book-cover" onerror="this.src='assets/logo.png'">
+                        </div>
+                        <div class="book-info">
+                            <span class="book-author">C.S. Lewis</span>
+                            <h3 class="book-title">Cristianismo Puro e Simples</h3>
+                            <div class="book-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(17.428)</span>
+                            </div>
+                            <div class="book-price">Seleção da Livraria</div>
+                            <div class="book-source">Clássico que transforma</div>
+                            <div class="book-actions">
+                                <button class="btn-buy secondary" onclick="window.open('https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20informações%20sobre%20o%20livro%20%27Cristianismo%20puro%20e%20simples%27%20de%20C.S.%20Lewis', '_blank')">+ WhatsApp</button>
+                                <a href="https://www.amazon.com.br/dp/8578601630?tag=novosdestinos-20" target="_blank" rel="noopener noreferrer" class="btn-buy primary btn-store">Comprar</a>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="book-card reveal">
-                    <div class="book-cover-wrapper" onclick="window.location.href='livro-auto-sabota.html'">
-                        <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-13-at-10.16.36_25889d1ae0444b1cbf91da8fa7d4f22a.jpeg" alt="Quando a mente nos auto-sabota" class="book-cover" onerror="this.src='assets/logo.png'">
-                    </div>
-                    <div class="book-info">
-                        <span class="book-author">C.E Luz</span>
-                        <h3 class="book-title">Quando a mente nos auto-sabota</h3>
-                        <div class="book-price">R$ 24,90</div>
-                        <div class="book-actions">
-                            <button class="btn-buy secondary" onclick="addToCart('Quando a mente nos auto-sabota',24.90,'https://pay.kiwify.com.br/gqoaa2m','https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-13-at-10.16.36_25889d1ae0444b1cbf91da8fa7d4f22a.jpeg')">+ Carrinho</button>
-                            <a href="livro-auto-sabota.html" class="btn-buy primary">Detalhes</a>
+                    <!-- Uma vida com propósitos -->
+                    <div class="book-card reveal">
+                        <div class="badge-bestseller">Nº1 Vendido</div>
+                        <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/8578600563?tag=novosdestinos-20', '_blank')">
+                            <img src="https://m.media-amazon.com/images/P/8578600563.01._SY475_.jpg" alt="Uma vida com propósitos" class="book-cover" onerror="this.src='assets/logo.png'">
+                        </div>
+                        <div class="book-info">
+                            <span class="book-author">Rick Warren</span>
+                            <h3 class="book-title">Uma Vida Com Propósitos</h3>
+                            <div class="book-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(3.463)</span>
+                            </div>
+                            <div class="book-price">Seleção da Livraria</div>
+                            <div class="book-source">Crescimento espiritual</div>
+                            <div class="book-actions">
+                                <button class="btn-buy secondary" onclick="window.open('https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20informações%20sobre%20o%20livro%20%27Uma%20vida%20com%20propósitos%27%20de%20Rick%20Warren', '_blank')">+ WhatsApp</button>
+                                <a href="https://www.amazon.com.br/dp/8578600563?tag=novosdestinos-20" target="_blank" rel="noopener noreferrer" class="btn-buy primary btn-store">Comprar</a>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="book-card reveal">
-                    <div class="book-cover-wrapper" onclick="window.location.href='livro-arte-aco.html'">
-                        <img src="https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-10-at-22.11.33_2b2bb3f8f8ed4d6297a57130db03b575.jpeg" alt="A Arte e o Aço" class="book-cover" onerror="this.src='assets/logo.png'">
-                    </div>
-                    <div class="book-info">
-                        <span class="book-author">C.E Luz</span>
-                        <h3 class="book-title">A Arte e o Aço</h3>
-                        <div class="book-price">R$ 34,90</div>
-                        <div class="book-actions">
-                            <button class="btn-buy secondary" onclick="addToCart('A Arte e o Aço',34.90,'https://pay.kiwify.com.br/sLSFv64','https://aws-assets.kiwify.com.br/EiDrwdgBVWr2lgL/WhatsApp-Image-2026-04-10-at-22.11.33_2b2bb3f8f8ed4d6297a57130db03b575.jpeg')">+ Carrinho</button>
-                            <a href="livro-arte-aco.html" class="btn-buy primary">Detalhes</a>
-                        </div>
-                    </div>
                 </div>
-
             </div>
+
+            <!-- SEÇÃO 2: ROMANCE CONTEMPORÂNEO -->
+            <div class="category-section">
+                <div class="category-header">
+                    <span class="category-label">💕 Histórias que Tocam o Coração</span>
+                    <h3 class="category-title">Romance Contemporâneo</h3>
+                    <p class="category-desc">Narrativas envolventes que exploram amor, relacionamentos e transformação pessoal.</p>
+                </div>
+                <div class="store-grid">
+
+                    <!-- Para todos os garotos que já amei (Box) -->
+                    <div class="book-card reveal">
+                        <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/8583862898?tag=novosdestinos-20', '_blank')">
+                            <img src="https://m.media-amazon.com/images/P/8583862898.01._SY475_.jpg" alt="Para todos os garotos que já amei - Box" class="book-cover" onerror="this.src='assets/logo.png'">
+                        </div>
+                        <div class="book-info">
+                            <span class="book-author">Jenny Han</span>
+                            <h3 class="book-title">Para Todos os Garotos (Box 3 volumes)</h3>
+                            <div class="book-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(7.266)</span>
+                            </div>
+                            <div class="book-price">Seleção da Livraria</div>
+                            <div class="book-source">Série completa</div>
+                            <div class="book-actions">
+                                <button class="btn-buy secondary" onclick="window.open('https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20informações%20sobre%20a%20s%C3%A9rie%20%27Para%20todos%20os%20garotos%27%20de%20Jenny%20Han', '_blank')">+ WhatsApp</button>
+                                <a href="https://www.amazon.com.br/dp/8583862898?tag=novosdestinos-20" target="_blank" rel="noopener noreferrer" class="btn-buy primary btn-store">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Para todos os garotos que já amei (Vol 1) -->
+                    <div class="book-card reveal">
+                        <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/8583862898?tag=novosdestinos-20', '_blank')">
+                            <img src="https://m.media-amazon.com/images/P/8583862898.01._SY475_.jpg" alt="Para todos os garotos que já amei" class="book-cover" onerror="this.src='assets/logo.png'">
+                        </div>
+                        <div class="book-info">
+                            <span class="book-author">Jenny Han</span>
+                            <h3 class="book-title">Para Todos os Garotos (Vol. 1)</h3>
+                            <div class="book-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(4.681)</span>
+                            </div>
+                            <div class="book-price">Seleção da Livraria</div>
+                            <div class="book-source">Volume individual</div>
+                            <div class="book-actions">
+                                <button class="btn-buy secondary" onclick="window.open('https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20informações%20sobre%20o%20livro%20%27Para%20todos%20os%20garotos%27%20Vol.%201%20de%20Jenny%20Han', '_blank')">+ WhatsApp</button>
+                                <a href="https://www.amazon.com.br/dp/8583862898?tag=novosdestinos-20" target="_blank" rel="noopener noreferrer" class="btn-buy primary btn-store">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- O sol também é uma estrela -->
+                    <div class="book-card reveal">
+                        <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/8595086958?tag=novosdestinos-20', '_blank')">
+                            <img src="https://m.media-amazon.com/images/P/8595086958.01._SY475_.jpg" alt="O sol também é uma estrela" class="book-cover" onerror="this.src='assets/logo.png'">
+                        </div>
+                        <div class="book-info">
+                            <span class="book-author">Nicola Yoon</span>
+                            <h3 class="book-title">O Sol Também é Uma Estrela</h3>
+                            <div class="book-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(2.252)</span>
+                            </div>
+                            <div class="book-price">Seleção da Livraria</div>
+                            <div class="book-source">Romance contemporâneo</div>
+                            <div class="book-actions">
+                                <button class="btn-buy secondary" onclick="window.open('https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20informações%20sobre%20o%20livro%20%27O%20sol%20também%20é%20uma%20estrela%27%20de%20Nicola%20Yoon', '_blank')">+ WhatsApp</button>
+                                <a href="https://www.amazon.com.br/dp/8595086958?tag=novosdestinos-20" target="_blank" rel="noopener noreferrer" class="btn-buy primary btn-store">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SEÇÃO 3: CRESCIMENTO PESSOAL & TRANSFORMAÇÃO -->
+            <div class="category-section">
+                <div class="category-header">
+                    <span class="category-label">🌱 Desenvolvimento &amp; Sabedoria</span>
+                    <h3 class="category-title">Crescimento Pessoal</h3>
+                    <p class="category-desc">Livros que transformam perspectivas e inspiram mudanças positivas na vida.</p>
+                </div>
+                <div class="store-grid">
+
+                    <!-- A Cabana -->
+                    <div class="book-card reveal">
+                        <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/8527408381?tag=novosdestinos-20', '_blank')">
+                            <img src="https://m.media-amazon.com/images/P/8527408381.01._SY475_.jpg" alt="A Cabana" class="book-cover" onerror="this.src='assets/logo.png'">
+                        </div>
+                        <div class="book-info">
+                            <span class="book-author">William P. Young</span>
+                            <h3 class="book-title">A Cabana</h3>
+                            <div class="book-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(3.425)</span>
+                            </div>
+                            <div class="book-price">Seleção da Livraria</div>
+                            <div class="book-source">Ficção transformadora</div>
+                            <div class="book-actions">
+                                <button class="btn-buy secondary" onclick="window.open('https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20informações%20sobre%20o%20livro%20%27A%20Cabana%27%20de%20William%20P.%20Young', '_blank')">+ WhatsApp</button>
+                                <a href="https://www.amazon.com.br/dp/8527408381?tag=novosdestinos-20" target="_blank" rel="noopener noreferrer" class="btn-buy primary btn-store">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Deus não tem favoritos, tem íntimos -->
+                    <div class="book-card reveal">
+                        <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/8561721541?tag=novosdestinos-20', '_blank')">
+                            <img src="https://m.media-amazon.com/images/P/8561721541.01._SY475_.jpg" alt="Deus não tem favoritos, tem íntimos" class="book-cover" onerror="this.src='assets/logo.png'">
+                        </div>
+                        <div class="book-info">
+                            <span class="book-author">Marcos Brunet</span>
+                            <h3 class="book-title">Deus Não Tem Favoritos, Tem Íntimos</h3>
+                            <div class="book-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(190)</span>
+                            </div>
+                            <div class="book-price">Seleção da Livraria</div>
+                            <div class="book-source">Espiritualidade profunda</div>
+                            <div class="book-actions">
+                                <button class="btn-buy secondary" onclick="window.open('https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20informações%20sobre%20o%20livro%20%27Deus%20não%20tem%20favoritos%27%20de%20Marcos%20Brunet', '_blank')">+ WhatsApp</button>
+                                <a href="https://www.amazon.com.br/dp/8561721541?tag=novosdestinos-20" target="_blank" rel="noopener noreferrer" class="btn-buy primary btn-store">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mulheres Enraizadas -->
+                    <div class="book-card reveal">
+                        <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/6500330095?tag=novosdestinos-20', '_blank')">
+                            <img src="https://m.media-amazon.com/images/P/6500330095.01._SY475_.jpg" alt="Mulheres Enraizadas" class="book-cover" onerror="this.src='assets/logo.png'">
+                        </div>
+                        <div class="book-info">
+                            <span class="book-author">Martinello Viviane</span>
+                            <h3 class="book-title">Mulheres Enraizadas</h3>
+                            <div class="book-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(1.360)</span>
+                            </div>
+                            <div class="book-price">Seleção da Livraria</div>
+                            <div class="book-source">Empoderamento feminino</div>
+                            <div class="book-actions">
+                                <button class="btn-buy secondary" onclick="window.open('https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20informações%20sobre%20o%20livro%20%27Mulheres%20Enraizadas%27%20de%20Martinello%20Viviane', '_blank')">+ WhatsApp</button>
+                                <a href="https://www.amazon.com.br/dp/6500330095?tag=novosdestinos-20" target="_blank" rel="noopener noreferrer" class="btn-buy primary btn-store">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hábitos Atômicos -->
+                    <div class="book-card reveal">
+                        <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/8550807567?tag=novosdestinos-20', '_blank')">
+                            <img src="https://m.media-amazon.com/images/P/8550807567.01._SY475_.jpg" alt="Hábitos Atômicos" class="book-cover" onerror="this.src='assets/logo.png'">
+                        </div>
+                        <div class="book-info">
+                            <span class="book-author">James Clear</span>
+                            <h3 class="book-title">Hábitos Atômicos</h3>
+                            <div class="book-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(12.000+)</span>
+                            </div>
+                            <div class="book-price">Seleção da Livraria</div>
+                            <div class="book-source">Método comprovado</div>
+                            <div class="book-actions">
+                                <button class="btn-buy secondary" onclick="window.open('https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20informações%20sobre%20o%20livro%20%27Hábitos%20Atômicos%27%20de%20James%20Clear', '_blank')">+ WhatsApp</button>
+                                <a href="https://www.amazon.com.br/dp/8550807567?tag=novosdestinos-20" target="_blank" rel="noopener noreferrer" class="btn-buy primary btn-store">Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- Reviews Section — REAL, sem comentários falsos -->
+    <!-- Reviews Section -->
     <section class="reviews-section" id="avaliacoes">
         <div class="container">
             <div class="section-header reveal">
@@ -206,7 +584,7 @@
             <div class="footer-content">
                 <div>
                     <img src="assets/logo.png" class="logo-icon" alt="Livraria Novos Destinos" style="width:160px;margin-bottom:1rem;">
-                    <p class="footer-desc">Transformando narrativas excepcionais em destinos literários únicos. Uma curadoria dedicada ao crescimento através da leitura.</p>
+                    <p class="footer-desc">Selecionando livros marcantes e bestsellers para transformar cada leitura em um novo destino.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Explorar</h4>
@@ -243,13 +621,5 @@
 
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script src="script.js"></script>
-    <script>
-        // Init review system for this page
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof window.initReviews === 'function') {
-                window.initReviews('geral');
-            }
-        });
-    </script>
 </body>
 </html>
