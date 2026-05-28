@@ -82,11 +82,65 @@
 
         .book-card {
             position: relative;
-            transition: all 0.3s ease;
+            background: #fff;
+            border: 1px solid rgba(31, 31, 31, 0.08);
+            border-radius: 8px;
+            padding: 1rem 1rem 1.15rem;
+            box-shadow: 0 18px 48px rgba(32, 27, 18, 0.07);
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
         }
 
         .book-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-6px);
+            border-color: rgba(180, 157, 101, 0.35);
+            box-shadow: 0 26px 64px rgba(32, 27, 18, 0.12);
+        }
+
+        .book-cover-wrapper {
+            background:
+                radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.88), transparent 38%),
+                linear-gradient(145deg, #f7f2e8 0%, #ebe3d4 100%);
+            border-radius: 8px;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.55), 0 18px 34px rgba(28, 24, 17, 0.16);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            overflow: hidden;
+        }
+
+        .book-cover-wrapper::after {
+            background: linear-gradient(120deg, rgba(255,255,255,0.24) 0%, transparent 34%, rgba(0,0,0,0.04) 100%);
+        }
+
+        .book-card:hover .book-cover-wrapper {
+            transform: translateY(-8px);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.65), 0 26px 48px rgba(28, 24, 17, 0.18);
+        }
+
+        .book-cover {
+            width: auto;
+            max-width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 12px 22px rgba(0,0,0,0.18);
+            background: #fff;
+        }
+
+        .book-card:hover .book-cover {
+            transform: scale(1.025);
+        }
+
+        .cover-fallback {
+            width: 70%;
+            height: auto;
+            box-shadow: none;
+            opacity: 0.7;
+        }
+
+        .book-info {
+            padding: 0 0.15rem;
         }
 
         .book-rating {
@@ -105,7 +159,7 @@
         }
 
         .rating-count {
-            color: #999;
+            color: #8a7b63;
             font-size: 0.8rem;
             font-weight: 500;
         }
@@ -117,12 +171,12 @@
             letter-spacing: 1px;
             margin-top: 0.5rem;
             padding-top: 0.5rem;
-            border-top: 1px solid #eee;
+            border-top: 1px solid rgba(180, 157, 101, 0.18);
             font-weight: 500;
         }
 
         .btn-store {
-            background: linear-gradient(135deg, #b49d65 0%, #8f7845 100%);
+            background: linear-gradient(135deg, #2f2b25 0%, #171512 100%);
             color: white;
             border: none;
             font-weight: 600;
@@ -130,9 +184,9 @@
         }
 
         .btn-store:hover {
-            background: linear-gradient(135deg, #9f8953 0%, #6f5a30 100%);
-            transform: scale(1.02);
-            box-shadow: 0 4px 12px rgba(180, 157, 101, 0.3);
+            background: linear-gradient(135deg, #b49d65 0%, #8f7845 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(180, 157, 101, 0.24);
         }
 
         /* Mobile Responsiveness */
@@ -305,7 +359,7 @@
                     <div class="book-card reveal">
                         <div class="badge-bestseller">Nº1 Vendido</div>
                         <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/B0CZQVV4YX?tag=novosdestinos-20', '_blank')">
-                            <img src="https://m.media-amazon.com/images/P/B0CZQVV4YX.01._SY475_.jpg" alt="Depois daquele verão" class="book-cover" onerror="this.src='assets/logo.png'">
+                            <img src="https://m.media-amazon.com/images/I/81ACZOO+FaL._AC_UL800_QL65_.jpg" alt="Depois daquele verão" class="book-cover" loading="eager" fetchpriority="high" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='assets/logo.png';this.classList.add('cover-fallback')">
                         </div>
                         <div class="book-info">
                             <span class="book-author">Carley Fortune</span>
@@ -327,7 +381,7 @@
                     <div class="book-card reveal">
                         <div class="badge-bestseller">Nº1 Vendido</div>
                         <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/8578601630?tag=novosdestinos-20', '_blank')">
-                            <img src="https://m.media-amazon.com/images/P/8578601630.01._SY475_.jpg" alt="Cristianismo puro e simples" class="book-cover" onerror="this.src='assets/logo.png'">
+                            <img src="https://m.media-amazon.com/images/I/91WAGXw7Y4L._AC_UL800_QL65_.jpg" alt="Cristianismo puro e simples" class="book-cover" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='assets/logo.png';this.classList.add('cover-fallback')">
                         </div>
                         <div class="book-info">
                             <span class="book-author">C.S. Lewis</span>
@@ -349,7 +403,7 @@
                     <div class="book-card reveal">
                         <div class="badge-bestseller">Nº1 Vendido</div>
                         <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/8578600563?tag=novosdestinos-20', '_blank')">
-                            <img src="https://m.media-amazon.com/images/P/8578600563.01._SY475_.jpg" alt="Uma vida com propósitos" class="book-cover" onerror="this.src='assets/logo.png'">
+                            <img src="https://m.media-amazon.com/images/I/714TkvXysxL._AC_UL800_QL65_.jpg" alt="Uma vida com propósitos" class="book-cover" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='assets/logo.png';this.classList.add('cover-fallback')">
                         </div>
                         <div class="book-info">
                             <span class="book-author">Rick Warren</span>
@@ -382,7 +436,7 @@
                     <!-- Para todos os garotos que já amei (Box) -->
                     <div class="book-card reveal">
                         <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/8583862898?tag=novosdestinos-20', '_blank')">
-                            <img src="https://m.media-amazon.com/images/P/8583862898.01._SY475_.jpg" alt="Para todos os garotos que já amei - Box" class="book-cover" onerror="this.src='assets/logo.png'">
+                            <img src="https://m.media-amazon.com/images/I/61iLVUFzF-S._AC_UL800_QL65_.jpg" alt="Para todos os garotos que já amei - Box" class="book-cover" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='assets/logo.png';this.classList.add('cover-fallback')">
                         </div>
                         <div class="book-info">
                             <span class="book-author">Jenny Han</span>
@@ -403,7 +457,7 @@
                     <!-- Para todos os garotos que já amei (Vol 1) -->
                     <div class="book-card reveal">
                         <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/8583862898?tag=novosdestinos-20', '_blank')">
-                            <img src="https://m.media-amazon.com/images/P/8583862898.01._SY475_.jpg" alt="Para todos os garotos que já amei" class="book-cover" onerror="this.src='assets/logo.png'">
+                            <img src="https://m.media-amazon.com/images/I/61iLVUFzF-S._AC_UL800_QL65_.jpg" alt="Para todos os garotos que já amei" class="book-cover" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='assets/logo.png';this.classList.add('cover-fallback')">
                         </div>
                         <div class="book-info">
                             <span class="book-author">Jenny Han</span>
@@ -424,7 +478,7 @@
                     <!-- O sol também é uma estrela -->
                     <div class="book-card reveal">
                         <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/8595086958?tag=novosdestinos-20', '_blank')">
-                            <img src="https://m.media-amazon.com/images/P/8595086958.01._SY475_.jpg" alt="O sol também é uma estrela" class="book-cover" onerror="this.src='assets/logo.png'">
+                            <img src="https://m.media-amazon.com/images/I/71LN5fzPYbL._AC_UL800_QL65_.jpg" alt="O sol também é uma estrela" class="book-cover" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='assets/logo.png';this.classList.add('cover-fallback')">
                         </div>
                         <div class="book-info">
                             <span class="book-author">Nicola Yoon</span>
@@ -457,7 +511,7 @@
                     <!-- A Cabana -->
                     <div class="book-card reveal">
                         <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/8527408381?tag=novosdestinos-20', '_blank')">
-                            <img src="https://m.media-amazon.com/images/P/8527408381.01._SY475_.jpg" alt="A Cabana" class="book-cover" onerror="this.src='assets/logo.png'">
+                            <img src="https://m.media-amazon.com/images/I/91SS5VRSl7L._AC_UL800_QL65_.jpg" alt="A Cabana" class="book-cover" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='assets/logo.png';this.classList.add('cover-fallback')">
                         </div>
                         <div class="book-info">
                             <span class="book-author">William P. Young</span>
@@ -478,7 +532,7 @@
                     <!-- Deus não tem favoritos, tem íntimos -->
                     <div class="book-card reveal">
                         <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/8561721541?tag=novosdestinos-20', '_blank')">
-                            <img src="https://m.media-amazon.com/images/P/8561721541.01._SY475_.jpg" alt="Deus não tem favoritos, tem íntimos" class="book-cover" onerror="this.src='assets/logo.png'">
+                            <img src="https://m.media-amazon.com/images/I/716rcuYhMcL._AC_UL800_QL65_.jpg" alt="Deus não tem favoritos, tem íntimos" class="book-cover" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='assets/logo.png';this.classList.add('cover-fallback')">
                         </div>
                         <div class="book-info">
                             <span class="book-author">Marcos Brunet</span>
@@ -499,7 +553,7 @@
                     <!-- Mulheres Enraizadas -->
                     <div class="book-card reveal">
                         <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/6500330095?tag=novosdestinos-20', '_blank')">
-                            <img src="https://m.media-amazon.com/images/P/6500330095.01._SY475_.jpg" alt="Mulheres Enraizadas" class="book-cover" onerror="this.src='assets/logo.png'">
+                            <img src="https://m.media-amazon.com/images/I/71-sgQhpTfL._AC_UL800_QL65_.jpg" alt="Mulheres Enraizadas" class="book-cover" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='assets/logo.png';this.classList.add('cover-fallback')">
                         </div>
                         <div class="book-info">
                             <span class="book-author">Martinello Viviane</span>
@@ -520,7 +574,7 @@
                     <!-- Hábitos Atômicos -->
                     <div class="book-card reveal">
                         <div class="book-cover-wrapper" onclick="window.open('https://www.amazon.com.br/dp/8550807567?tag=novosdestinos-20', '_blank')">
-                            <img src="https://m.media-amazon.com/images/P/8550807567.01._SY475_.jpg" alt="Hábitos Atômicos" class="book-cover" onerror="this.src='assets/logo.png'">
+                            <img src="https://m.media-amazon.com/images/I/81eT2pjx4jL._AC_UL800_QL65_.jpg" alt="Hábitos Atômicos" class="book-cover" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='assets/logo.png';this.classList.add('cover-fallback')">
                         </div>
                         <div class="book-info">
                             <span class="book-author">James Clear</span>
